@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  get '/login' => 'sessions#new'
-  get '/auth/github/callback' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  get '/login' => 'session#new'
+  get '/auth/github/callback' => 'session#create'
+  get '/logout' => 'session#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
