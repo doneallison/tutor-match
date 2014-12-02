@@ -6,11 +6,12 @@ class SessionController < ApplicationController
 
   def create
 
+    # @auth_hash = auth_hash
     @student = Student.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid]) || Student.create_from_omniauth(auth_hash)
     if @student
          session[:student_id] = @student.id
-         # redirect_to user_path(current_user)
-         redirect_to "http://www.google.com"
+         redirect_to edit_student_path(current_student)
+         # render 'student/edit'
     else
          redirect_to root_url
     end
