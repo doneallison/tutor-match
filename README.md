@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Tutor Match
 
 ## Description
@@ -38,3 +39,7 @@ Link to your blog, twitter, etc!
 ## License
 
 Tutor Match is MIT Licensed. See LICENSE for details.
+=======
+tutor-match
+===========
+>>>>>>> 45d7611d05f5432315416ab612fbf03c5d37ef95
