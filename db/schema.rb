@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202193554) do
+ActiveRecord::Schema.define(version: 20141202193557) do
 
   create_table "appointments", force: true do |t|
     t.datetime "start_time"
@@ -40,9 +40,10 @@ ActiveRecord::Schema.define(version: 20141202193554) do
     t.string   "slack"
     t.string   "github"
     t.text     "bio"
-    t.integer  "uid"
+    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
   end
 
   create_table "tutor_skills", force: true do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20141202193554) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
   end
 
   create_table "windows", force: true do |t|
