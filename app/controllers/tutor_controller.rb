@@ -10,15 +10,18 @@ class TutorController < ApplicationController
   end
 
   def update
-    # @tutor = tutor.find(params[:id])
+  
     @tutor = current_tutor
     @tutor.name = params[:tutor][:name]
     @tutor.email = params[:tutor][:email]
     @tutor.slack = params[:tutor][:slack]
     @tutor.github = params[:tutor][:github]
     @tutor.bio = params[:tutor][:bio]
+    @tutor.employer = params[:tutor][:employer]
+    @tutor.flatiron_class = params[:flatiron_class]
     @tutor.save
 
     redirect_to appointment_index_path
+
   end
 end
