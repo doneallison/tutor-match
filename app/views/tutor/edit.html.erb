@@ -13,11 +13,10 @@
   <%= f.text_field :github,  value: @tutor.github.split("/")[-1] %><br>
 
   <%= f.label :bio, "Bio" %>
-  <%= f.text_area :bio,  value: @tutor.bio, placeholder: "Please provide a brief description of your programming background and experience." %>
+  <%= f.text_area :bio,  value: @tutor.bio, placeholder: "Please provide a brief description of your programming background and experience." %><br>
 
   <%= f.label :employer, "Current Employer" %>
-  <%= f.text_area :employer, placeholder: "The Flatiron School" %>
-
+  <%= f.text_area :employer, placeholder: "The Flatiron School" %><br>
   <%= f.label :flatiron_class, "Class at The Flatiron School" %>
   <% %w(iOS-000 iOS-001 iOS-002 iOS-003 Ruby-000 Ruby-001 Ruby-002 Ruby-003 Ruby-004 Ruby-005 Ruby-006).each do |flatiron_class| %>
   	<br>
