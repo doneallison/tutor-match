@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'appointment/show'
+
   get 'welcome/index'
 
   get '/login' => 'session#new'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :student
+  resources :student, :appointment
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

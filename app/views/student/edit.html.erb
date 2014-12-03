@@ -1,4 +1,18 @@
-<%= current_student.id %>
 
+
+<%= form_for @student, url: {action: "update"}, html: {class: "user_form"} do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name, value: @student.name %><br>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email,  value: @student.email %><br>
+  <%= f.label :slack, "Slack Username" %>
+  <%= f.text_field :slack, value: @student.slack, placeholder: "slack username" %><br>
+  <%= f.label :github, "Github Username" %>
+  <%= f.text_field :github,  value: @student.github %><br>
+  <%= f.label :bio, "Bio" %>
+  <%= f.text_area :bio,  value: @student.bio, placeholder: "Briefly describe your background and experience with programming." %>
+  <br>
+  <%= f.submit "Create" %>
+<% end %>
 
 
