@@ -2,7 +2,8 @@
   <%= link_to current_student.name, student_path(current_student) %>
   <%= link_to 'Log Out', logout_path %>
 <% else %>
-  <%= link_to 'Log In with Github', login_path %>
+<button type="submit" id="Student"><a href="/student/new">Student Login</a></button>
+<button type="submit" id="Tutor"><a href="/tutor/new">Mentor Login</a></button>
 <% end %>
 
 

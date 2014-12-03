@@ -1,4 +1,11 @@
 class StudentController < ApplicationController
+  
+  def new
+    @student = Student.new
+    session[:is_tutor] = false
+    binding.pry
+    redirect_to login_path
+  end
 
   def edit
     @student = current_student

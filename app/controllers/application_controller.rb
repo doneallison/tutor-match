@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
     @current_student ||= Student.find(session[:student_id]) if session[:student_id] #memoized
   end
 
+  helper_method def current_tutor
+    @current_tutor ||= Tutor.find(session[:tutor_id]) if session[:tutor_id] #memoized
+  end
+
 end
