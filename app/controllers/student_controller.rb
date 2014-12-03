@@ -3,8 +3,7 @@ class StudentController < ApplicationController
   def new
     @student = Student.new
     session[:is_tutor] = false
-    binding.pry
-    redirect_to login_path
+    redirect_to '/auth/github'
   end
 
   def edit

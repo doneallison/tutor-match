@@ -2,7 +2,7 @@ class TutorController < ApplicationController
   def new
     @tutor = Tutor.new
     session[:is_tutor] = true
-    redirect_to login_path
+    redirect_to '/auth/github'
   end
 
   def edit

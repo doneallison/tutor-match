@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method def current_student
-    @current_student ||= Student.find(session[:student_id]) if session[:student_id] #memoized
+    @current_student ||= Student.find(session[:student_id]) if session[:student_id]
   end
 
   helper_method def current_tutor
-    @current_tutor ||= Tutor.find(session[:tutor_id]) if session[:tutor_id] #memoized
+    @current_tutor ||= Tutor.find(session[:tutor_id]) if session[:tutor_id]
   end
 
 end
