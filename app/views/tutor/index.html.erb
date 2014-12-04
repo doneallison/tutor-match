@@ -1,4 +1,13 @@
-<% Tutor.all.each do |tutor| %>
+<strong>All tutors</strong>
+<br><br>
 
+<% Tutor.all.each do |tutor| %>
   <%= tutor.name %>
-  <% end %>
+  <%= link_to 'Show', tutor %>
+  <%= link_to 'Edit', edit_tutor_path(tutor) %>
+  <br>
+<% end %>
+<br>
+<%= link_to 'All students', student_index_path %><br>
+<br>
+<%= link_to 'Log Out', logout_path %>

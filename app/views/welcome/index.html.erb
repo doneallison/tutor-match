@@ -2,12 +2,16 @@
 <% if logged_in? %>
   <% if current_student %>
     Student logged in as: <%= current_student.name %>
+    <%= link_to 'Show', current_student %>
+    <%= link_to 'Edit', edit_student_path(current_student) %>
   <% else %>
     Tutor logged in as: <%= current_tutor.name %>
+    <%= link_to 'Show', current_tutor %>
+    <%= link_to 'Edit', edit_tutor_path(current_tutor) %>
   <%end%>
 
+  <br>
   <%= link_to 'Log Out', logout_path %>
-
 <br>
 
 <% else %>

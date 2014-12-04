@@ -10,6 +10,15 @@ class StudentController < ApplicationController
     @student = current_student
   end
 
+  def index
+    @student = current_student
+  end
+
+  def show 
+    @student = Student.find(params[:id])
+    # binding.pry
+  end
+
   def update
     # @student = Student.find(params[:id])
     @student = current_student

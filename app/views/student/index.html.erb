@@ -1,0 +1,12 @@
+<strong>All students</strong>
+<br><br>
+
+<% Student.all.each do |student| %>
+  <%= student.name %>
+  <%= link_to 'Show', student %>
+  <%= link_to 'Edit', edit_student_path(student) %>
+  <br>
+<% end %>
+<%= link_to 'All tutors', tutor_index_path %>
+<br>
+<%= link_to 'Log Out', logout_path %>

@@ -5,7 +5,7 @@ class SessionController < ApplicationController
   end
 
   def create
-
+# binding.pry
     @auth_hash = auth_hash
 
     if session[:is_tutor]

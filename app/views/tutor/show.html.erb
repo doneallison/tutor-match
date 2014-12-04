@@ -1,0 +1,9 @@
+<strong>Tutor:</strong><br>
+  Name: <%= @tutor.name %><br>
+  Email: <%= @tutor.email %><br>
+  github: <%= @tutor.github %><br>
+<br>
+<%= link_to 'All students', student_index_path %><br>
+<%= link_to 'All tutors', tutor_index_path %>
+<br>
+<%= link_to 'Log Out', logout_path %>

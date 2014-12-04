@@ -1,4 +1,5 @@
 class TutorController < ApplicationController
+
   def new
     @tutor = Tutor.new
     session[:is_tutor] = true
@@ -18,6 +19,7 @@ class TutorController < ApplicationController
   end
 
   def show
+    @tutor = Tutor.find(params[:id])
   end
 
   private

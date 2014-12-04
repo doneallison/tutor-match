@@ -1,1 +1,8 @@
-<p>hello student!</p>
+<strong>Student:</strong><br>
+  Name: <%= @student.name %><br>
+  Email: <%= @student.email %><br>
+  github: <%= @student.github %><br>
+<br>
+<%= link_to 'All students', student_index_path %><br>
+<%= link_to 'All tutors', tutor_index_path %>
+
