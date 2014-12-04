@@ -10,7 +10,7 @@ class TutorController < ApplicationController
   end
 
   def update
-  
+    binding.pry
     @tutor = current_tutor
     @tutor.name = params[:tutor][:name]
     @tutor.email = params[:tutor][:email]

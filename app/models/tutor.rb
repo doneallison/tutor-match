@@ -1,6 +1,8 @@
 class Tutor < ActiveRecord::Base
-	has_many :skills, through: :tutorskills
-	has_many :windows, through: :tutorwindows
+  has_many :tutor_skills
+	has_many :skills, through: :tutor_skills
+  has_many :tutor_windows
+	has_many :windows, through: :tutor_windows
 	has_many :appointments
 
   def self.create_from_omniauth(auth_hash)
