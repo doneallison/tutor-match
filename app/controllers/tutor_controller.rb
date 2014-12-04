@@ -23,7 +23,8 @@ class TutorController < ApplicationController
   private
 
     def tutor_params
-      params.require(:tutor).permit(:name, :email, :slack, :github, :bio, :employer, :flatiron_class, :skill_ids => [])
+      params.require(:tutor).permit(:name, :email, :slack, :github, :bio, :employer, :flatiron_class, :skill_ids => [], :window_ids => [])
+
     end
 
 end

@@ -34,7 +34,19 @@
   <% end %>
   </ul>
   <hr />
-  
+
+  <br>
+
+  <%= f.label :windows, "Windows" %><br>
+  <ul>
+  <%= f.collection_check_boxes(:window_ids, Window.all, :id, :name) do |b| %>
+  <li>
+    <%= b.label { b.check_box + b.text } %>
+   </li>
+  <% end %>
+  </ul>
+  <hr />
+
   <br>
 
   <%= f.submit "Submit Profile" %>
