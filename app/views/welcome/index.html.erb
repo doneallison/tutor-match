@@ -1,5 +1,9 @@
 <% if logged_in? %>
-  <%= link_to current_student.name, student_path(current_student) %>
+  <% if current_tutor %>
+    <%= link_to current_tutor.name, tutor_path(current_tutor) %>
+  <% else %>
+    <%= link_to current_student.name, student_path(current_student) %>
+  <% end %>
   <%= link_to 'Log Out', logout_path %>
 <% else %>
 	<button type="submit" id="Student"><a href="/student/new">Student Login</a></button>
