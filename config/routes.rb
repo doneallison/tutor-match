@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/login' => 'session#new'
   get '/auth/github/callback' => 'session#create'
   get '/logout' => 'session#destroy'
+  get 'appointments/results', to: 'appointment#result', as: :appointment_results
+  post 'appointments/search', to: 'appointment#search', as: :appointment_search
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

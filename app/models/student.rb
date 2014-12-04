@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
-	has_many :appointments, through: :studentappointments
+  has_many :student_appointments
+	has_many :appointments, through: :student_appointments
 
   def self.create_from_omniauth(auth_hash)
     self.create(provider: auth_hash[:provider],
