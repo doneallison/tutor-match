@@ -1,4 +1,13 @@
-<strong>All students</strong>
+
+<% if logged_in? %>
+  <% if current_student %>
+    Student logged in as: <%= current_student.name %>
+  <% else %>
+    Tutor logged in as: <%= current_tutor.name %>
+  <%end%>
+<% end %>
+<br>
+<h1>All students</h1>
 <br><br>
 
 <% Student.all.each do |student| %>

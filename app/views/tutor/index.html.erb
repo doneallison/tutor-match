@@ -1,13 +1,46 @@
-<strong>All tutors</strong>
-<br><br>
 
-<% Tutor.all.each do |tutor| %>
-  <%= tutor.name %>
-  <%= link_to 'Show', tutor %>
-  <%= link_to 'Edit', edit_tutor_path(tutor) %>
-  <br>
+<% if logged_in? %>
+  <% if current_student %>
+    Student logged in as: <%= current_student.name %>
+  <% else %>
+    Tutor logged in as: <%= current_tutor.name %>
+  <%end%>
 <% end %>
-<br>
+
+<div class="container">
+  <div class="navbar-header">
+    <h1>All Tutors</h1>
+  </div>
+</div>
+
+  <div class=".col-xs-6 .col-md-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Skills</th>
+          <th>Preferred Windows</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Tutor.all.each do |tutor| %>
+        <tr>
+          <td><%= tutor.name %></td>
+          <td><% tutor.skills.each do |skill| %>
+            <%= skill.name %>, 
+          <% end %></td>
+          <td><% tutor.windows.each do |window| %>
+            <%= window.name %>
+          <% end %></td>
+          <td><%= link_to 'Show', tutor %></td>
+          <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
+          <td><%= link_to 'Destroy', tutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+<br>  
+      </tbody>
+    </table>
+  </div>
 <%= link_to 'All students', student_index_path %><br>
 <br>
 <%= link_to 'Log Out', logout_path %>
