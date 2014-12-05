@@ -4,7 +4,11 @@ class Appointment < ActiveRecord::Base
 	belongs_to :tutor
 
 	def self.find_matches(skills_needed, windows_needed)
-		Tutor.all
+
+		Tutor.select do |tutor|
+			(tutor.skill_ids & skills_needed != []) && (tutor.window_ids & windows_needed != [])
+		end
+
 	end
 
 end
