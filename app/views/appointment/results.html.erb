@@ -1,3 +1,14 @@
-<% @tutor_matches.each do |x| %>
-	<%= x.name %><br>
+<p>The following tutors have experience in <%= Appointment.list_skills_in_sentence(@skills_needed) %> and are usually free on <%= Appointment.list_windows_in_sentence(@windows_needed) %>.</p>
+
+<ul>
+<% @tutor_matches.each do |match| %>
+	<li>
+	<%= match.name %><br>
+	<%= form_tag('/appointments/book') do %>
+		<%= hidden_field_tag :tutor, match.id %>
+	  <div><%= submit_tag 'Book' %></div>
+	<% end %>
+	<br>
+	</li>
 <% end %>
+</ul>

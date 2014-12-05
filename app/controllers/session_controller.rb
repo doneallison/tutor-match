@@ -5,13 +5,13 @@ class SessionController < ApplicationController
   end
 
   def create
-# binding.pry
     @auth_hash = auth_hash
 
     if session[:is_tutor]
 
       if Tutor.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
         @tutor = Tutor.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
+        session[:tutor_id] = @tutor.id
         redirect_to appointment_index_path
       else
         @tutor = Tutor.create_from_omniauth(auth_hash)
@@ -23,6 +23,7 @@ class SessionController < ApplicationController
 
       if Student.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
         @student = Student.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
+        session[:student_id] = @student.id
         redirect_to appointment_index_path
       else
         @student = Student.create_from_omniauth(auth_hash)
