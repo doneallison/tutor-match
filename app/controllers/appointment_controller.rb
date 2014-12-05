@@ -1,4 +1,7 @@
 class AppointmentController < ApplicationController
+
+  layout "appointment", only: [:index]
+
   def show
   end
 

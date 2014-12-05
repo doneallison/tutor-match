@@ -1,7 +1,7 @@
-<h1>appointment index page</h1>
+<h1>Search for Appointment</h1>
 <br>
 <%= link_to 'All tutors', tutor_index_path %>
-<div align="center">
+<div style="width:100%;">
 <% if logged_in? %>
   <% if current_student %>
     Student logged in as: <%= current_student.name %>
@@ -25,11 +25,11 @@
 
 
 <% if logged_in? %>
-  <%= link_to 'Log Out', logout_path %> 
+  <%= link_to 'Log Out', logout_path %>
 <% end %>
 
 <%= form_tag('/appointments/search') do %>
-    
+
   <ul>
   <%= collection_check_boxes(:skills, :skill_ids, Skill.all, :id, :name) do |b| %>
   <li>
@@ -45,6 +45,6 @@
    </li>
   <% end %>
   </ul>
-  
+
   <div><%= submit_tag 'Search' %></div>
 <% end %>
