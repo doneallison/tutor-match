@@ -20,8 +20,9 @@ class AppointmentController < ApplicationController
   def book
     @student = current_student
     @tutor = Tutor.find(params[:tutor])
-    #implement logic that creates appointment between @student and @tutor
-    #then redirect somewhere appropriate; perhaps appointment#index
+    @appointment = Appointment.create(tutor_id: @tutor.id)
+    StudentAppointment.create(student_id: @student.id, appointment_id: @appointment.id)
+    redirect_to appointment_index_path
   end
 
 end
