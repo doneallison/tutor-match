@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'boot/index'
+
   get 'appointment/show'
 
   get 'welcome/index'
