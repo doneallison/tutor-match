@@ -1,5 +1,7 @@
 class StudentController < ApplicationController
-  
+  layout "form", only: [:edit, :update]
+
+
   def new
     @student = Student.new
     session[:is_tutor] = false
@@ -14,7 +16,7 @@ class StudentController < ApplicationController
     @student = current_student
   end
 
-  def show 
+  def show
     @student = Student.find(params[:id])
     # binding.pry
   end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'boot/index'
+  get 'boot/form'
 
   get 'appointment/show'
 
