@@ -258,8 +258,8 @@ a:hover, a:focus {
   position: relative;
   min-height: 1200px;
   padding: 15px 15px 35px 15px;
-  margin-left: 220px;
 }
+
 @media (max-width: 991px) {
   #content-wrapper {
     margin-left: 0;
@@ -1504,6 +1504,27 @@ h3 .small {
 .open .dropdown-toggle.btn-warning {
   background-color: #e0b50a;
   border-color: #bd9804;
+}
+
+.btn-github a {
+color: #FFF;
+}
+
+.btn-github a:hover,.btn-github a:focus {
+  color: gray;
+  text-decoration: none;
+}
+
+.btn-github {
+  color: white!;
+  background-color: #444 !important;
+  border-color: rgba(0, 0, 0, 0.2); !important;
+}
+
+.btn-github:hover {
+  color:white!;
+  background-color: #444 !important;
+  border-color: rgba(0, 0, 0, 0.4); !important;
 }
 
 .btn-facebook {
@@ -3189,6 +3210,7 @@ input[type="radio"] {
   margin-left: 0;
 }
 #login-box .btn-facebook,
+#login-box .btn-github,
 #login-box .btn-twitter {
   text-transform: none;
   font-size: 1em;
