@@ -10,6 +10,7 @@ class StudentController < ApplicationController
 
   def edit
     @student = current_student
+    render layout: 'form'
   end
 
   def index

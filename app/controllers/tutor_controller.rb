@@ -9,6 +9,7 @@ class TutorController < ApplicationController
 
   def edit
     @tutor = current_tutor
+    render layout: 'form'
   end
 
   def update
