@@ -19,20 +19,19 @@ class StudentController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    # binding.pry
   end
 
   def update
-    # @student = Student.find(params[:id])
-    @student = current_student
-    @student.name = params[:student][:name]
-    @student.email = params[:student][:email]
-    @student.slack = params[:student][:slack]
-    @student.github = params[:student][:github]
-    @student.bio = params[:student][:bio]
-    @student.save
-
+    current_student.update(student_params)
+    UserMailer.welcome_email(current_student).deliver
     redirect_to appointment_index_path
   end
+
+  private
+
+    def student_params
+      params.require(:student).permit(:name, :email, :slack, :github, :bio)
+
+    end
 
 end

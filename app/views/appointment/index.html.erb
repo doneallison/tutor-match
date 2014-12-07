@@ -3,7 +3,11 @@
 
 <h2>Pending Appointments</h2>
 <% Appointment.where(confirmed: false).all.each do |appointment| %>
-  <%= appointment %>
+  <% if current_tutor %>
+    <%= appointment.students.first.name %>
+  <% else %>
+    <%= Tutor.find(appointment.tutor_id).name %>
+  <% end %>
   <%= link_to 'Show', appointment %>
   <br>
 <% end %>
