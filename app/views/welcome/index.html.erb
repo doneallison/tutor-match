@@ -16,7 +16,17 @@
 
 <% else %>
 
-	<button type="submit" id="Student"><a href="/student/new">Student Login</a></button>
-	<button type="submit" id="Tutor"><a href="/tutor/new">Tutor Login</a></button>
-  
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <button type="submit" class="btn btn-primary col-xs-12 btn-github">
+      <i class="fa fa-github"></i><a href="/student/new"> Student Login</a>
+    </button>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <button type="submit" class="btn btn-primary col-xs-12 btn-github">
+      <i class="fa fa-github"></i><a href="/tutor/new"> Alumnus Login</a>
+    </button>
+  </div>
+</div>
+
 <% end %>
