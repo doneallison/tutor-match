@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141205201108) do
+ActiveRecord::Schema.define(version: 20141207203539) do
 
   create_table "appointments", force: true do |t|
     t.datetime "start_time"
@@ -20,13 +20,6 @@ ActiveRecord::Schema.define(version: 20141205201108) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "confirmed"
-  end
-
-  create_table "inquiries", force: true do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "skills", force: true do |t|
@@ -42,13 +35,6 @@ ActiveRecord::Schema.define(version: 20141205201108) do
     t.datetime "updated_at"
   end
 
-  create_table "student_inquiries", force: true do |t|
-    t.integer  "student_id"
-    t.integer  "inquiry_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "students", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -59,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141205201108) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"
+    t.string   "image"
   end
 
   create_table "tutor_skills", force: true do |t|
@@ -87,6 +74,7 @@ ActiveRecord::Schema.define(version: 20141205201108) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider"
+    t.string   "image"
   end
 
   create_table "windows", force: true do |t|
