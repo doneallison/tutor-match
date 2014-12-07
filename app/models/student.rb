@@ -3,7 +3,6 @@ class Student < ActiveRecord::Base
 	has_many :appointments, through: :student_appointments
 
   def self.create_from_omniauth(auth_hash)
-    binding.pry
     self.create(
       provider: auth_hash[:provider],
       uid: auth_hash[:uid],
@@ -13,5 +12,4 @@ class Student < ActiveRecord::Base
       image: auth_hash[:info][:image]
                 )
   end
-  # image_url: auth_hash[:info][:image]
 end
