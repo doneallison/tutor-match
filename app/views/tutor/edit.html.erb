@@ -1,22 +1,22 @@
 <%= form_for @tutor, url: {action: "update"}, html: {class: "user_form"} do |f| %>
 
   <%= f.label :name, "Name" %>
-  <%= f.text_field :name, value: @tutor.name %><br>
+  <%= f.text_field :name, class: 'form-control', value: @tutor.name %><br>
 
   <%= f.label :email, "Email" %>
-  <%= f.text_field :email,  value: @tutor.email %><br>
+  <%= f.text_field :email, class: 'form-control',  value: @tutor.email %><br>
 
   <%= f.label :slack, "Slack Username" %>
-  <%= f.text_field :slack, value: @tutor.slack, placeholder: "Slack Username" %><br>
+  <%= f.text_field :slack, class: 'form-control', value: @tutor.slack, placeholder: "Slack Username" %><br>
 
   <%= f.label :github, "GitHub Username" %>
-  <%= f.text_field :github,  value: @tutor.github.split("/")[-1] %><br>
+  <%= f.text_field :github, class: 'form-control',  value: @tutor.github.split("/")[-1] %><br>
 
   <%= f.label :bio, "Bio" %>
-  <%= f.text_area :bio,  value: @tutor.bio, placeholder: "Please provide a brief description of your programming background and experience." %><br>
+  <%= f.text_area :bio,class: 'form-control',   value: @tutor.bio, placeholder: "Please provide a brief description of your programming background and experience." %><br>
 
   <%= f.label :employer, "Current Employer" %>
-  <%= f.text_area :employer, placeholder: "The Flatiron School" %><br><br>
+  <%= f.text_area :employer, class: 'form-control', placeholder: "The Flatiron School" %><br><br>
 
   <%= f.label :flatiron_class, "Class at The Flatiron School" %>
    <% %w(iOS-000 iOS-001 iOS-002 iOS-003 Ruby-000 Ruby-001 Ruby-002 Ruby-003 Ruby-004 Ruby-005 Ruby-006).each do |flatiron_class| %>
