@@ -8,8 +8,10 @@ class AppointmentController < ApplicationController
   def index
     if current_tutor
       @tutor = current_tutor
+      @user = current_tutor
     else
       @student = current_student
+      @user = current_student
     end
   end
 
