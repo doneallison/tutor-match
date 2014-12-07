@@ -58,15 +58,25 @@
                 <% end %>
               </li>
               <li class="dropdown profile-dropdown">
-                <a href="#" class="dopdown-toggle" >
 
-                  <img src="http://www.placekitten.com/240/200" alt=""/>
-                  <%# image_tag("") %>
-                  <span class="hidden-xs">
+                <% if @tutor %>
+                  <%= link_to current_tutor, :class => 'dopdown-toggle' do %>
+                    <img src="http://www.placekitten.com/240/200" alt=""/>
+                    <%# image_tag("") %>
+                    <span class="hidden-xs">
+                        <%= @user.name %>
+                    </span>
+                  <% end %>
+                <% else %>
+                  <%= link_to current_student, :class => 'dopdown-toggle' do %>
+                    <img src="http://www.placekitten.com/240/200" alt=""/>
+                    <%# image_tag("") %>
+                    <span class="hidden-xs">
+                        <%= @user.name %>
+                    </span>
+                  <% end %>
+                <% end %>
 
-                      <%= @user.name %>
-                  </span>
-                </a>
 
               </li>
               <li class="hidden-xxs">
