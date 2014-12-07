@@ -1,5 +1,5 @@
 class StudentController < ApplicationController
-  layout "form", only: [:edit, :update]
+  layout "appointment", only: [:edit, :update]
 
 
   def new

@@ -1,4 +1,5 @@
 class TutorController < ApplicationController
+  layout "appointment"
 
   def new
     @tutor = Tutor.new
