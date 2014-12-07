@@ -18,13 +18,9 @@
   <%= f.label :employer, "Current Employer" %>
   <%= f.text_area :employer, class: 'form-control', placeholder: "The Flatiron School" %><br><br>
 
-  <%= f.label :flatiron_class, "Class at The Flatiron School" %>
-   <% %w(iOS-000 iOS-001 iOS-002 iOS-003 Ruby-000 Ruby-001 Ruby-002 Ruby-003 Ruby-004 Ruby-005 Ruby-006).each do |flatiron_class| %>
-     <br>
-     <%= f.label :flatiron_class, flatiron_class %>
-     <%= radio_button(:tutor, :flatiron_class, flatiron_class) %>
-   <%end%><br><br>
-
+  <%= f.label :flatiron_class, "Class at The Flatiron School" %><br>
+  <%= f.select :flatiron_class, options_for_select(%w(iOS-000 iOS-001 iOS-002 iOS-003 Ruby-000 Ruby-001 Ruby-002 Ruby-003 Ruby-004 Ruby-005 Ruby-006)) %>
+<br><br>
   <%= f.label :skills, "Skills" %><br>
   <ul>
   <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :name) do |b| %>
