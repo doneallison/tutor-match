@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TutorMatch</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= analytics_init if Rails.env.production? %>
+  </head>
+  <body>
+    <div id="theme-wrapper">
+      <%= render "layouts/header" %>
+      <div id="page-wrapper" class="container">
+        <div class="row">
+          <div id="nav-col">
+          </div>
+          <div id="content-wrapper">
+            <div class="row">
+
+<div class="im_centered">
+                        <%= yield %>
+</div>
+
+            </div>
+
+            <footer id="footer-bar" class="row">
+              <p id="footer-copyright" class="col-xs-12">
+                &copy; 2014 <a href="http://www.flatironschool.com" target="_blank">Flatiron School</a>. Powered by Centaurus Theme.
+              </p>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

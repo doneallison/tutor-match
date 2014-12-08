@@ -1,9 +1,43 @@
-<strong>Tutor:</strong><br>
-  Name: <%= @tutor.name %><br>
-  Email: <%= @tutor.email %><br>
-  github: <%= @tutor.github %><br>
-<br>
-<%= link_to 'All students', student_index_path %><br>
-<%= link_to 'All tutors', tutor_index_path %>
-<br>
-<%= link_to 'Log Out', logout_path %>
+
+  <div class="col-md-12" style="margin-top:40px">
+    <div class="main-box clearfix profile-box-menu">
+      <div class="main-box-body clearfix">
+        <div class="profile-box-header lightblue-bg clearfix">
+          <img src="<%= @user.image %>" alt="" class="profile-img img-responsive" />
+          <h2 style="font-size:1.5em"><%= @user.name.split.first%></h2><br>
+          <h2 style="padding: 0 0 0 0; font-size:1.5em"><%= @user.name.split.last %></h2>
+          <div class="job-position" style="font-size: 1.3em">
+            Tutor
+          </div>
+        </div>
+        <div class="profile-box-content clearfix">
+          <ul class="menu-items">
+            <li>
+              <a href="#" class="clearfix">
+                <i class="fa fa-user fa-lg"></i> <strong>Flatiron class</strong>
+                <span class="pull-right">
+                  <%= @user.flatiron_class %>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:<%= @user.email %>" class="clearfix">
+                <i class="fa fa-envelope fa-lg"></i> <strong>Email</strong>
+                <span class="pull-right">
+                  <%= @user.email %>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.github.com/<%= @tutor.github %>" class="clearfix">
+                <i class="fa fa-link fa-lg"></i> <strong>Github</strong>
+                <span class="pull-right">
+                 <%= @tutor.github %>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
