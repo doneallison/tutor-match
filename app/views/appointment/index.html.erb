@@ -1,1 +1,38 @@
-You still need to fix something - this should be directing to the index page.
+<h1>All Appointments</h1>
+
+<%= grid(@appointments_grid, show_filters: :no) do |g|
+
+ g.column name: 'appointment ID', attribute: 'id' do |appointment|
+   appointment.id
+ end
+
+ g.column name: 'Date', attribute: 'start_time' do |appointment|
+   appointment.start_time.strftime("%a, %B %-d, %Y")
+ end
+
+ g.column name: 'Timeframe', attribute: 'id', model: Window do |appointment|
+  appointment.window.name
+ end
+
+ g.column name: 'Tutor', attribute: 'id', model: Tutor do |appointment|
+  appointment.tutor.name if appointment.tutor
+ end
+
+ g.column name: 'Students', attribute: 'id', model: Student do |appointment|
+  # I think that this gets weird when there is more than 1 students signed up
+  student_names = []
+  appointment.students.each do |student|
+    student_names << student.name
+  end
+  student_names.join(", ")
+ end
+
+ g.column name: 'Appt confirmed?', attribute: 'confirmed' do |appointment|
+   appointment.confirmed ? 'Yes' : 'No'
+ end
+
+ g.column name: 'Edit' do |appointment|
+   link_to('Edit', edit_appointment_path(appointment))
+ end
+end %>
+
