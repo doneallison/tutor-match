@@ -1,5 +1,10 @@
 <h1>Current Appointments</h1>
-
+  
+  <ul>
+  <% Appointment.all.each do |appointment| %>
+    <li><%= "#{appointment.id}" %>
+  <% end %>
+  </ul>
 
 <% if current_student %>
   
