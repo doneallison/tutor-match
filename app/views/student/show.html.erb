@@ -3,6 +3,9 @@
   <div class="main-box clearfix profile-box-menu">
     <div class="main-box-body clearfix">
       <div class="profile-box-header lightblue-bg clearfix">
+        <div style="position:absolute;right:30px">
+          <%= link_to 'Edit', edit_student_path(@user), class: 'btn btn-success' %>
+        </div>
         <img src="<%= @user.image %>" alt="" class="profile-img img-responsive" />
         <h2 style="font-size:1.5em"><%= @user.name.split.first%></h2><br>
         <h2 style="padding: 0 0 0 0; font-size:1.5em"><%= @user.name.split.last %></h2>
