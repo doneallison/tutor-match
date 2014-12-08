@@ -1,4 +1,4 @@
-<h1>Appointments</h1>
+<h1>Current Appointments</h1>
 <br>
 
 <h2>Pending Appointments</h2>
@@ -18,9 +18,10 @@
   <%= link_to 'Show', appointment %>
   <br>
 <% end %>
+<br>
 
 <% if current_student %>
-  <h2>Search for Appointments</h2>
+  <h1>Make a New Appointment</h1>
   <%= form_tag('/appointments/search') do %>
     <h3>What do you need help with?</h3>
     <%= collection_check_boxes(:skills, :skill_ids, Skill.all, :id, :name) do |b| %>
@@ -32,14 +33,13 @@
 
 
     <h3>When would you like to meet with a tutor?</h3>
-    <ul>
     <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
-    <li>
-      <%= b.label { b.check_box + b.text } %>
-     </li>
+      <div class="checkbox-nice checkbox-inline">
+        <%= b.check_box %>
+        <%= b.label(class: "checkbox-inline") %>
+      </div>
     <% end %>
-    </ul>
-
+    <br><br>
     <div><%= submit_tag 'Search' %></div>
   <% end %>
 <% end %>
