@@ -7,7 +7,7 @@
  end
 
  g.column name: 'Date', attribute: 'start_time' do |appointment|
-   appointment.start_time.strftime("%a, %B %-d, %Y")
+   appointment.start_time ? appointment.start_time.strftime("%a, %B %-d, %Y") : ""
  end
 
  g.column name: 'Timeframe', attribute: 'id', model: Window do |appointment|
