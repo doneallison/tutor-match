@@ -1570,6 +1570,7 @@ color: #FFF;
   /* stops bg color from leaking outside the border: */
   font-size: 0.875em;
   font-weight: 600;
+  padding: 7px;
 }
 
 .label-default,
