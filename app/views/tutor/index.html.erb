@@ -1,46 +1,32 @@
+<h1>All Tutors</h1>
 
-<% if logged_in? %>
-  <% if current_student %>
-    Student logged in as: <%= current_student.name %>
-  <% else %>
-    Tutor logged in as: <%= current_tutor.name %>
-  <%end%>
-<% end %>
+<%= grid(@tutors_grid, show_filters: :no) do |g|
 
-<div class="container">
-  <div class="navbar-header">
-    <h1>All Tutors</h1>
-  </div>
-</div>
+ g.column name: 'tutor ID', attribute: 'id' do |tutor|
+   tutor.id
+ end
 
-  <div class=".col-xs-6 .col-md-4">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Skills</th>
-          <th>Preferred Windows</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% Tutor.all.each do |tutor| %>
-        <tr>
-          <td><%= tutor.name %></td>
-          <td><% tutor.skills.each do |skill| %>
-            <%= skill.name %>, 
-          <% end %></td>
-          <td><% tutor.windows.each do |window| %>
-            <%= window.name %>
-          <% end %></td>
-          <td><%= link_to 'Show', tutor %></td>
-          <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
-          <td><%= link_to 'Destroy', tutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-<br>  
-      </tbody>
-    </table>
-  </div>
-<%= link_to 'All students', student_index_path %><br>
-<br>
-<%= link_to 'Log Out', logout_path %>
+ g.column name: 'Name', attribute: 'name' do |tutor|
+   tutor.name
+ end
+
+ g.column name: 'Email' do |tutor|
+   tutor.email
+ end
+
+ g.column name: 'Slack username' do |tutor|
+   tutor.slack
+ end
+
+ g.column name: 'Slack username' do |tutor|
+   tutor.slack
+ end  
+
+ g.column name: 'Show' do |tutor|
+   link_to('Show', student_path(tutor))
+ end
+
+ g.column name: 'Edit' do |tutor|
+   link_to('Edit', edit_student_path(tutor))
+ end
+end %>

@@ -19,6 +19,7 @@ class TutorController < ApplicationController
   end
 
   def index
+    @tutors_grid = initialize_grid(Tutor)
   end
 
   def show
