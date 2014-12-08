@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   get '/logout' => 'session#destroy'
 
   get 'appointments/results', to: 'appointment#result', as: :appointment_results
-  get 'appointment/show', to: 'appointment#show', as: :appointment_show
-  get 'appointments/edit', to: 'appointment#edit', as: :appointment_edit
-  get 'appointments/cancel', to: 'appointment#cancel', as: :appointment_cancel
+  get '/appointments/:id/cancel', to: 'appointment#cancel'
+  get '/appointments/:id/edit', to: 'appointment#edit'
 
   post 'appointments/search', to: 'appointment#search', as: :appointment_search
   post 'appointments/book', to: 'appointment#book', as: :appointment_book
+  post '/appointments/:id/edit', to: 'appointment#edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

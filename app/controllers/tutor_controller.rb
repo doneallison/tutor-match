@@ -1,6 +1,6 @@
 class TutorController < ApplicationController
   layout "appointment"
-  before_filter :find_tutor_or_student, only: [:index, :search, :show]
+  before_filter :find_tutor_or_student#, only: [:index, :search, :show]
 
   def new
     @tutor = Tutor.new
@@ -35,7 +35,6 @@ class TutorController < ApplicationController
       @user = current_student
     end
   end
-
 
   private
 

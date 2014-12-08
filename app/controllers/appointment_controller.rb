@@ -1,13 +1,12 @@
 class AppointmentController < ApplicationController
 
   layout "appointment", only: [:index]
-  before_filter :find_tutor_or_student, only: [:index, :search, :show]
-
-  def show
-  end
+  before_filter :find_tutor_or_student#, only: [:index, :search, :show]
 
   def index
+  end
 
+  def cancel
   end
 
   def search
