@@ -9,6 +9,12 @@ class AppointmentController < ApplicationController
   def cancel
   end
 
+  def confirm
+    @appointment = Appointment.find(params[:id])
+    @appointment.confirmed = true
+    @appointment.save
+  end
+
   def search
   	@skills_needed = params[:skills][:skill_ids].map { |x| x.to_i }[0..-2]
   	@windows_needed = params[:windows][:window_ids].map { |x| x.to_i }[0..-2]

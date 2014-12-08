@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'appointments/results', to: 'appointment#result', as: :appointment_results
   get '/appointments/:id/cancel', to: 'appointment#cancel'
   get '/appointments/:id/edit', to: 'appointment#edit'
+  get '/appointments/:id/confirm', to: 'appointment#confirm'
 
   post 'appointments/search', to: 'appointment#search', as: :appointment_search
   post 'appointments/book', to: 'appointment#book', as: :appointment_book
