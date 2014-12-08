@@ -1,5 +1,16 @@
+<style type="text/css">
+  h1 {
+ padding-left: 0px !important;
+  }
+
+  /*p {margin-bottom:40px;}*/
+  .space-bottom {
+    margin-bottom:40px;
+  }
+</style>
 <% if logged_in? %>
-  
+
+<div class="row space-bottom">
 <h1>Current Appointments</h1>
 
 <% if current_tutor %>
@@ -31,8 +42,10 @@
       <% end %>
     </ul>
     <% end %>
-    <ul>
+  </div>
 
+
+  <div class="row space-bottom">
   <h1>Make a New Appointment</h1>
 
   <h3>What do you need help with?</h3>
@@ -46,7 +59,7 @@
       <% end %>
 
   <h3>When would you like to meet with a tutor?</h3>
-      
+
       <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
         <div class="checkbox-nice checkbox-inline">
           <%= b.check_box %>
@@ -60,6 +73,7 @@
   <% end %>
 
 <% end %>
+</div>
 
 <!-- End Student-Only Portion -->
 
