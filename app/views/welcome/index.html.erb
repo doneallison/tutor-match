@@ -4,12 +4,12 @@
 
 <% if current_tutor %>
 <!-- Begin Tutor-Only Portion -->
-    <% if Appointment.where("cancelled = ? AND confirmed = ?", false, true).size == 0 %>
+    <% if Appointment.where("cancelled = ?", false).size == 0 %>
       <p>You do not have any current appointments.</p>
     <% else %>
     <ul>
       <% Appointment.where("cancelled = ? AND confirmed = ?", false, true).each do |appointment| %>
-        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Request Cancellation', "/appointments/#{appointment.id}/cancel" %>
+        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Cancel', "/appointments/#{appointment.id}/cancel" %>
       <% end %>
       <% Appointment.where("cancelled = ? AND confirmed = ?", false, false).each do |appointment| %>
         <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Confirm', "/appointments/#{appointment.id}/confirm" %>
@@ -19,15 +19,15 @@
 <!-- End Tutor-Only Portion -->
 <% elsif current_student %>
 <!-- Begin Student-Only Portion -->
-    <% if Appointment.where("cancelled = ? AND confirmed = ?", false, true).size == 0 %>
+    <% if Appointment.where("cancelled = ?", false).size == 0 %>
       <p>You do not have any current appointments.</p>
     <% else %>
     <ul>
       <% Appointment.where("cancelled = ? AND confirmed = ?", false, true).each do |appointment| %>
-        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Request Cancellation', "/appointments/#{appointment.id}/cancel" %>
+        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= appointment.confirmed ? "Confirmed" : "Unconfirmed" %> | <%= link_to 'Cancel', "/appointments/#{appointment.id}/cancel" %>
       <% end %>
       <% Appointment.where("cancelled = ? AND confirmed = ?", false, false).each do |appointment| %>
-        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Confirm', "/appointments/#{appointment.id}/confirm" %>
+        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= appointment.confirmed ? "Confirmed" : "Unconfirmed" %> | <%= link_to 'Cancel', "/appointments/#{appointment.id}/cancel" %>
       <% end %>
     </ul>
     <% end %>
