@@ -1,5 +1,8 @@
 
 <% if logged_in? %>
+
+
+
   <% if current_student %>
     Student logged in as: <%= current_student.name %>
     <%= link_to 'Show', current_student %>
@@ -13,6 +16,7 @@
   <br>
   <%= link_to 'Log Out', logout_path %>
 <br>
+
 
 <% else %>
 
