@@ -1,6 +1,6 @@
 class StudentController < ApplicationController
   layout "appointment"
-
+  before_filter :find_tutor_or_student#, only: [:index, :search, :show]
 
   def new
     @student = Student.new
@@ -26,6 +26,16 @@ class StudentController < ApplicationController
     current_student.update(student_params)
     UserMailer.welcome_email(current_student).deliver
     redirect_to root_path
+  end
+
+  def find_tutor_or_student
+    if current_tutor
+      @tutor = current_tutor
+      @user = current_tutor
+    else
+      @student = current_student
+      @user = current_student
+    end
   end
 
   private

@@ -9,7 +9,7 @@
       
       <ul>
       <% Appointment.all.each do |appointment| %>
-        <li><%= "#{appointment.window}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', appointment_show_path(appointment) %> | <%= link_to 'Edit', appointment_edit_path(appointment) %> | <%= link_to 'Request Cancellation', appointment_cancel_path(appointment) %>
+        <li><%= "#{appointment.window}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Request Cancellation', "/appointments/#{appointment.id}/cancel" %>
       <% end %>
       </ul>
 
@@ -23,7 +23,7 @@
       
       <ul>
       <% Appointment.all.each do |appointment| %>
-        <li><%= "#{Window.find(appointment.window).name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', appointment_show_path(appointment) %> | <%= link_to 'Edit', appointment_edit_path(appointment) %> | <%= link_to 'Request Cancellation', appointment_cancel_path(appointment) %>
+        <li><%= "#{appointment.window}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Request Cancellation', "/appointments/#{appointment.id}/cancel" %>
       <% end %>
       </ul>
     
