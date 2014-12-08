@@ -7,12 +7,21 @@ class AppointmentController < ApplicationController
   end
 
   def cancel
+    @appointment = Appointment.find(params[:id])
+    @appointment.cancelled = true
+    @appointment.save
+    #send email
+    #render flash notice
+    redirect_to root_path
   end
 
   def confirm
     @appointment = Appointment.find(params[:id])
     @appointment.confirmed = true
     @appointment.save
+    #send email
+    #render flash notice
+    redirect_to root_path
   end
 
   def search
@@ -26,9 +35,8 @@ class AppointmentController < ApplicationController
     @student = current_student
     @tutor = Tutor.find(params[:tutor])
     @window = Window.find(params[:window])
-    @appointment = Appointment.create(tutor_id: @tutor.id, window_id: @window.id, confirmed: false)
+    @appointment = Appointment.create(tutor_id: @tutor.id, window_id: @window.id, confirmed: false, cancelled: false)
     @student.appointments << @appointment
-    # StudentAppointment.create(student_id: @student.id, appointment_id: @appointment.id)
     redirect_to root_path
   end
 
