@@ -14,7 +14,7 @@ class TutorController < ApplicationController
 
   def update
     current_tutor.update(tutor_params)
-    redirect_to appointment_index_path
+    redirect_to root_path
   end
 
   def index

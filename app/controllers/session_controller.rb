@@ -12,7 +12,7 @@ class SessionController < ApplicationController
       if Tutor.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
         @tutor = Tutor.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
         session[:tutor_id] = @tutor.id
-        redirect_to appointment_index_path
+        redirect_to root_path
       else
         @tutor = Tutor.create_from_omniauth(auth_hash)
         session[:tutor_id] = @tutor.id
@@ -24,7 +24,7 @@ class SessionController < ApplicationController
       if Student.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
         @student = Student.find_by_provider_and_uid(auth_hash[:provider], auth_hash[:uid])
         session[:student_id] = @student.id
-        redirect_to appointment_index_path
+        redirect_to root_path
       else
         @student = Student.create_from_omniauth(auth_hash)
         session[:student_id] = @student.id

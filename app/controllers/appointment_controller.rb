@@ -23,7 +23,7 @@ class AppointmentController < ApplicationController
     @window = Window.find(params[:window])
     @appointment = Appointment.create(tutor_id: @tutor.id, window: @window.id, confirmed: false)
     StudentAppointment.create(student_id: @student.id, appointment_id: @appointment.id)
-    redirect_to appointment_index_path
+    redirect_to root_path
   end
 
   def find_tutor_or_student
