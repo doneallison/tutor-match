@@ -33,14 +33,10 @@
 
 
     <h3>When would you like to meet with a tutor?</h3>
-    <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
-      <div class="checkbox-nice checkbox-inline">
-        <%= b.check_box %>
-        <%= b.label(class: "checkbox-inline") %>
-      </div>
-    <% end %>
-    <br><br>
-    <div><%= submit_tag 'Search' %></div>
+    Date: <input type="date"></input><br><br>
+    Time: <input type="time"></input><br><br>
+    Number of Hours: <input type="number" value="2"></input><br><br>
+    <div><%= submit_tag 'Search for Available Tutors' %></div>
   <% end %>
 <% end %>
 

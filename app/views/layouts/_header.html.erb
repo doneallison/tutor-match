@@ -6,7 +6,7 @@
     <div class="clearfix">
       <div class="nav-no-collapse pull-right" id="header-nav">
         <ul class="nav navbar-nav pull-right">
-          <li class="mobile-search">
+<!--           <li class="mobile-search">
             <a class="btn">
               <i class="fa fa-search"></i>
             </a>
@@ -19,7 +19,25 @@
                 </div>
               </form>
             </div>
+          </li> -->
+          <li class="dropdown profile-dropdown">
+            <% if !!@tutor %>
+              <%= link_to current_tutor, :class => 'dopdown-toggle' do %>
+                <img src=<%= current_tutor.image %> alt=""/>
+                <span class="hidden-xs">
+                    <%= @tutor.name %>
+                </span>
+              <% end %>
+            <% else %>
+              <%= link_to current_student, :class => 'dopdown-toggle' do %>
+                <img src=<%= current_student.image %> alt=""/>
+                <span class="hidden-xs">
+                    <%= @student.name %>
+                </span>
+              <% end %>
+            <% end %>
           </li>
+
           <li class="hidden-xs">
             <% if !!@tutor %>
               <%= link_to edit_tutor_path(current_tutor), :class => 'btn' do %>
@@ -31,33 +49,13 @@
               <% end %>
             <% end %>
           </li>
-          <li class="dropdown profile-dropdown">
 
-            <% if !!@tutor %>
-              <%= link_to current_tutor, :class => 'dopdown-toggle' do %>
-                <img src=<%= current_tutor.image %> alt=""/>
-                <%# image_tag("") %>
-                <span class="hidden-xs">
-                    <%= @tutor.name %>
-                </span>
-              <% end %>
-            <% else %>
-              <%= link_to current_student, :class => 'dopdown-toggle' do %>
-                <img src=<%= current_student.image %> alt=""/>
-                <%# image_tag("") %>
-                <span class="hidden-xs">
-                    <%= @student.name %>
-                </span>
-              <% end %>
-            <% end %>
-
-
-          </li>
           <li class="hidden-xxs">
            <%= link_to logout_path, :class => 'btn' do %>
             <i class="fa fa-power-off"></i>
            <% end %>
           </li>
+
         </ul>
       </div>
     </div>
