@@ -1,179 +1,34 @@
 <h1>Current Appointments</h1>
-<br>
 
-
-
-
-
-
-
-
-
-
-
-<!doctype html>
-<html>
-<head>
-    <title>Timetable</title>
-    <style type="text/css">
-    body
-    {
-        font-family: arial;
-    }
-
-    th,td
-    {
-        margin: 0;
-        text-align: center;
-        border-collapse: collapse;
-        outline: 1px solid #e3e3e3;
-    }
-
-    td
-    {
-        padding: 5px 10px;
-    }
-
-    th
-    {
-        background: #666;
-        color: white;
-        padding: 5px 10px;
-    }
-
-    td:hover
-    {
-        cursor: pointer;
-        background: #666;
-        color: white;
-    }
-    </style>
-    </head>
-
-
-
-<% today = Date.today%>
-<% day=[]%>
-<% day[0]=today            %>
-<% day[1]=today.next_day(1)%>
-<% day[2]=today.next_day(2)%>
-<% day[3]=today.next_day(3)%>
-<% day[4]=today.next_day(4)%>
-<% day[5]=today.next_day(5)%>
-<% day[6]=today.next_day(6)%>
-<% windows = ["Window / Day", "Morning", "Late Morning", "Afternoon", "Late Afternoon", "Evening", "Late Evening", "Night", "Red-eye", "Absurd"]%>
-
-
-<table width="100%" align="center" >
-  <div id="head_nav">
-    <tr> 
-    <th>Window / Day</th>
-      <% windows.each do |window| %>
-          <tr><%=window%></tr>
-        <%end%>
-    <% day.each do |day| %>
-      <th><%= day %></th>
-    <% end %>
-    
-    </tr>
-  </div>
-</table>
-
-
-<table style="width:100%">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Points</th>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td> 
-    <td>94</td>
-  </tr>
-</table>
- -->
-<table>
-  <tr>
-    <th id="Window / Day">Window / Day</th>
-    <% day.each do |day| %>
-      <th><%= day %></th>
-    <% end %>
-  </tr>
-
-  <tr> 
-    <% windows.each do |window| %>
-    <tr><%= window %></tr>
-      <% day.each do |day| %>
-        <% Appointment.all.each do |appt| %>
-        <%  #binding.pry%>
-          <% if appt.day == day %>
-            <% if appt.window == window %>
-              <td>Tutor: <%= appt.tutor.name %></td>
-                <% appt.students.each do |student| %>
-                  <td>Student: <%= student.name %></td>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-
-  </tr>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h2>Pending Appointments</h2>
-<% Appointment.where(confirmed: false).all.each do |appointment| %>
-  <% if current_tutor %>
-    <%= appointment.students.first.name %>
-  <% else %>
-    <%= Tutor.find(appointment.tutor_id).name %>
-  <% end %>
-  <%= link_to 'Show', appointment %>
-  <br>
-<% end %>
-
-<h2>Confirmed Appointments</h2>
-<% Appointment.where(confirmed: true).all.each do |appointment| %>
-  <%= appointment.start_time %> to <%= appointment.end_time %>
-  <%= link_to 'Show', appointment %>
-  <br>
-<% end %>
-<br>
 
 <% if current_student %>
+  
   <h1>Make a New Appointment</h1>
-  <%= form_tag('/appointments/search') do %>
-    <h3>What do you need help with?</h3>
-    <%= collection_check_boxes(:skills, :skill_ids, Skill.all, :id, :name) do |b| %>
-    <div class="checkbox-nice checkbox-inline">
-      <%= b.check_box %>
-      <%=  b.label(class: "checkbox-inline") %>
-     </div>
-    <% end %>
 
+  <h3>What do you need help with?</h3>
 
-    <h3>When would you like to meet with a tutor?</h3>
-    Date: <input type="date"></input><br><br>
-    Time: <input type="time"></input><br><br>
-    Number of Hours: <input type="number" value="2"></input><br><br>
+    <%= form_tag('/appointments/search') do %>
+      <%= collection_check_boxes(:skills, :skill_ids, Skill.all, :id, :name) do |b| %>
+      <div class="checkbox-nice checkbox-inline">
+        <%= b.check_box %>
+        <%=  b.label(class: "checkbox-inline") %>
+       </div>
+      <% end %>
+
+  <h3>When would you like to meet with a tutor?</h3>
+
+      <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
+        <div class="checkbox-nice checkbox-inline">
+          <%= b.check_box %>
+          <%= b.label(class: "checkbox-inline") %>
+        </div>
+        <br>
+      <% end %><br>
+
     <div><%= submit_tag 'Search for Available Tutors' %></div>
+
   <% end %>
+
 <% end %>
 
 <div align="center">
