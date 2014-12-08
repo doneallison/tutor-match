@@ -47,13 +47,15 @@
         <%= appointment.window.name %>
         </td>
         <td class="text-center">
-        <span class="label label-success">
           <% if appointment.confirmed %>
-          Confirmed
+          <span class="label label-success">
+            Confirmed
+          </span>
           <% else %>
-          Pending
+          <span class="label label-warning">
+            Pending
+          </span>
           <% end %>
-        </span>
         </td>
         <td class="text-center" style="width: 15%;">
           <%= link_to "/appointments/#{appointment.id}/cancel", class: 'table-link' do %>
