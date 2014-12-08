@@ -2,7 +2,7 @@
   
   <ul>
   <% Appointment.all.each do |appointment| %>
-    <li><%= "#{appointment.id}" %>
+    <li><%= "#{Window.find(appointment.window).name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', appointment_show_path(appointment) %> | <%= link_to 'Edit', appointment_edit_path(appointment) %> | <%= link_to 'Request Cancellation', appointment_cancel_path(appointment) %>
   <% end %>
   </ul>
 
@@ -21,7 +21,7 @@
       <% end %>
 
   <h3>When would you like to meet with a tutor?</h3>
-
+      
       <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
         <div class="checkbox-nice checkbox-inline">
           <%= b.check_box %>

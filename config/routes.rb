@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   get 'boot/index'
   get 'boot/form'
 
-  get 'appointment/show'
-
   get 'welcome/index'
 
   get '/login' => 'session#new'
   get '/auth/github/callback' => 'session#create'
   get '/logout' => 'session#destroy'
+
   get 'appointments/results', to: 'appointment#result', as: :appointment_results
+  get 'appointment/show', to: 'appointment#show', as: :appointment_show
+  get 'appointments/edit', to: 'appointment#edit', as: :appointment_edit
+  get 'appointments/cancel', to: 'appointment#cancel', as: :appointment_cancel
+
   post 'appointments/search', to: 'appointment#search', as: :appointment_search
   post 'appointments/book', to: 'appointment#book', as: :appointment_book
 

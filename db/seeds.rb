@@ -6,17 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Student.create(name: "Tom Cohenno", email: "tomcohenno@gmail.com", slack: "tomcohenno", github: "tomcohenno", bio: "I'm a baller.")
+Student.create(name: "Don Allison", email: "doneallison@gmail.com", slack: "doneallison", github: "doneallison", uid: "3227364", image: "https://avatars.githubusercontent.com/u/3227364?v=3")
 
-Student.create(name: "Donny-o", email: "donnyo@gmail.com", slack: "donnyo", github: "donnyo", bio: "me from massachusets")
+Tutor.create(name: "Don Allison", uid: "3227364", image: "https://avatars.githubusercontent.com/u/3227364?v=3")
 
-Student.create(name: "Rodrigo", email: "rodd@gmail.com", slack: "rodrigofigueroa", github: "bidah", bio: "right here")
+TutorSkill.create(tutor_id: 1, skill_id: 1)
+TutorSkill.create(tutor_id: 1, skill_id: 2)
+TutorSkill.create(tutor_id: 1, skill_id: 3)
 
-Tutor.create(name: "Tristan Siegel", email: "tristan@flatironschool.com", slack: "tristansiegel", github: "tristansiegel", bio: "My glasses are smaller now.", flatiron_class: "Ruby005", employer: "The Flatiron School")
-
-Tutor.create(name: "Mr. Einstein", email: "relativityrocks@space.com", slack: "einstein", github: "einstein", bio: "i'm arguably the smartest person in the last century", flatiron_class: "Ruby000", employer: "i'm dead now")
-
-Appointment.create(start_time: "2014-12-02 20:00:00 UTC", end_time: "2014-12-02 23:00:00 UTC")
+TutorWindow.create(tutor_id: 1, window_id: 1)
+TutorWindow.create(tutor_id: 1, window_id: 2)
+TutorWindow.create(tutor_id: 1, window_id: 3)
+TutorWindow.create(tutor_id: 1, window_id: 4)
+TutorWindow.create(tutor_id: 1, window_id: 5)
+TutorWindow.create(tutor_id: 1, window_id: 6)
+TutorWindow.create(tutor_id: 1, window_id: 7)
+TutorWindow.create(tutor_id: 1, window_id: 8)
+TutorWindow.create(tutor_id: 1, window_id: 10)
+TutorWindow.create(tutor_id: 1, window_id: 11)
+TutorWindow.create(tutor_id: 1, window_id: 12)
 
 Window.create(name: "Sunday Morning")
 Window.create(name: "Sunday Afternoon")

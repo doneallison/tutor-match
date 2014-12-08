@@ -43,4 +43,20 @@ class Appointment < ActiveRecord::Base
 		str
 	end
 
+	def list_students
+		str = ""
+		self.students.each_with_index do |student, index|
+			if (self.students.length == 1) || ((self.students.length == 2) && (index == 1))
+				str << "#{student.name}"
+			elsif (self.students.length == 2 && index == 0)
+				str << "#{student.name} and "
+			elsif (index < self.students.length - 1)
+				str << "#{student.name}, "
+			else (index == self.students.length - 1)
+				str << "and #{student.name}"
+			end
+		end
+		str
+	end
+
 end
