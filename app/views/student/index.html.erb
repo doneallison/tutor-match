@@ -1,21 +1,35 @@
-
-<% if logged_in? %>
-  <% if current_student %>
-    Student logged in as: <%= current_student.name %>
-  <% else %>
-    Tutor logged in as: <%= current_tutor.name %>
-  <%end%>
-<% end %>
-<br>
 <h1>All students</h1>
-<br><br>
 
-<% Student.all.each do |student| %>
-  <%= student.name %>
-  <%= link_to 'Show', student %>
-  <%= link_to 'Edit', edit_student_path(student) %>
-  <br>
-<% end %>
-<%= link_to 'All tutors', tutor_index_path %>
+<%= grid(@students_grid, show_filters: :no) do |g|
+
+ g.column name: 'Student ID', attribute: 'id' do |student|
+   student.id
+ end
+
+ g.column name: 'Name', attribute: 'name' do |student|
+   student.name
+ end
+
+ g.column name: 'Email' do |student|
+   student.email
+ end
+
+ g.column name: 'Slack username' do |student|
+   student.slack
+ end
+
+ g.column name: 'Slack username' do |student|
+   student.slack
+ end  
+
+ g.column name: 'Show' do |student|
+   link_to('Show', student_path(student))
+ end
+
+ g.column name: 'Edit' do |student|
+   link_to('Edit', edit_student_path(student))
+ end
+end %>
+
 <br>
-<%= link_to 'Log Out', logout_path %>
+<%= link_to 'All tutors', tutor_index_path %>

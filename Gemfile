@@ -15,11 +15,13 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 2.0'
 
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'figaro'
+gem "wice_grid", '3.4.2'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc

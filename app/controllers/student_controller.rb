@@ -15,6 +15,7 @@ class StudentController < ApplicationController
 
   def index
     @student = current_student
+    @students_grid = initialize_grid(Student)
   end
 
   def show

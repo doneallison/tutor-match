@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
   layout "welcome_index"
   before_filter :find_tutor_or_student
+
   def index
     if logged_in?
       render layout: "appointment"
