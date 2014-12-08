@@ -12,12 +12,12 @@ class AppointmentController < ApplicationController
     @appointment.cancelled = true
     @appointment.save
     #send email
-    #render flash notice
     if current_tutor
-      redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.list_students} on #{@appointment.window.name}."
+      redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.list_students} on #{@appointment.window.name}. #{@appointment.list_students} #{@appointment.students.size == 1 ? "has" : "have"} been notified."
     else
-      redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.tutor.name} on #{@appointment.window.name}."
+      redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.tutor.name} on #{@appointment.window.name}. #{@appointment.tutor.name} has been notified."
     end
+    flash[:notice] = redirect_message
     redirect_to root_path
   end
 
@@ -26,7 +26,9 @@ class AppointmentController < ApplicationController
     @appointment.confirmed = true
     @appointment.save
     #send email
-    #render flash notice
+    if current_tutor
+      flash[:notice] = "You have successfully confirmed your appointment with #{@appointment.students.last.name}. #{@appointment.students.last.name} has been notified."
+    end
     redirect_to root_path
   end
 
