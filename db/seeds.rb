@@ -10,6 +10,14 @@ Student.create(name: "Don Allison", email: "doneallison@gmail.com", slack: "done
 
 Tutor.create(name: "Don Allison", uid: "3227364", image: "https://avatars.githubusercontent.com/u/3227364?v=3")
 
+Appointment.create(confirmed: true, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 1, window_id: 1)
+
+Appointment.create(confirmed: false, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 2, window_id: 1)
+
+Appointment.create(confirmed: true, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 1, window_id: 2)
+
+Appointment.create(confirmed: false, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 2, window_id: 3)
+
 TutorSkill.create(tutor_id: 1, skill_id: 1)
 TutorSkill.create(tutor_id: 1, skill_id: 2)
 TutorSkill.create(tutor_id: 1, skill_id: 3)

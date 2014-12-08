@@ -4,6 +4,7 @@ class AppointmentController < ApplicationController
   before_filter :find_tutor_or_student#, only: [:index, :search, :show]
 
   def index
+    @appointments_grid = initialize_grid(Appointment, include: [:window, :tutor], joins: :students)
   end
 
   def cancel
