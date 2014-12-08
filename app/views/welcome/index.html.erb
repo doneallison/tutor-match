@@ -1,63 +1,66 @@
 
 <% if logged_in? %>
+  
+<h1>Current Appointments</h1>
 
-  <% if current_tutor %>
-
+<% if current_tutor %>
 <!-- Begin Tutor-Only Portion -->
-
-    <h1>Current Appointments</h1>
-      
-      <ul>
-      <% Appointment.all.each do |appointment| %>
-        <% if appointment.confirmed %>
-          <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Request Cancellation', "/appointments/#{appointment.id}/cancel" %>
-        <% else %>
-          <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Confirm', "/appointments/#{appointment.id}/confirm" %>
-        <% end %>
-      <% end %>
-      </ul>
-
-<!-- End Tutor-Only Portion -->
-
-  <% elsif current_student %>
-
-<!-- Begin Student-Only Portion -->
-
-    <h1>Current Appointments</h1>
-      
-      <ul>
-      <% Appointment.all.each do |appointment| %>
+    <% if Appointment.where("cancelled = ? AND confirmed = ?", false, true).size == 0 %>
+      <p>You do not have any current appointments.</p>
+    <% else %>
+    <ul>
+      <% Appointment.where("cancelled = ? AND confirmed = ?", false, true).each do |appointment| %>
         <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Request Cancellation', "/appointments/#{appointment.id}/cancel" %>
       <% end %>
-      </ul>
-    
-    <h1>Make a New Appointment</h1>
+      <% Appointment.where("cancelled = ? AND confirmed = ?", false, false).each do |appointment| %>
+        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Confirm', "/appointments/#{appointment.id}/confirm" %>
+      <% end %>
+    </ul>
+    <% end %>
+<!-- End Tutor-Only Portion -->
+<% elsif current_student %>
+<!-- Begin Student-Only Portion -->
+    <% if Appointment.where("cancelled = ? AND confirmed = ?", false, true).size == 0 %>
+      <p>You do not have any current appointments.</p>
+    <% else %>
+    <ul>
+      <% Appointment.where("cancelled = ? AND confirmed = ?", false, true).each do |appointment| %>
+        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Request Cancellation', "/appointments/#{appointment.id}/cancel" %>
+      <% end %>
+      <% Appointment.where("cancelled = ? AND confirmed = ?", false, false).each do |appointment| %>
+        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Confirm', "/appointments/#{appointment.id}/confirm" %>
+      <% end %>
+    </ul>
+    <% end %>
+    <ul>
 
-    <h3>What do you need help with?</h3>
+  <h1>Make a New Appointment</h1>
 
-      <%= form_tag('/appointments/search') do %>
-        <%= collection_check_boxes(:skills, :skill_ids, Skill.all, :id, :name) do |b| %>
+  <h3>What do you need help with?</h3>
+
+    <%= form_tag('/appointments/search') do %>
+      <%= collection_check_boxes(:skills, :skill_ids, Skill.all, :id, :name) do |b| %>
+      <div class="checkbox-nice checkbox-inline">
+        <%= b.check_box %>
+        <%=  b.label(class: "checkbox-inline") %>
+       </div>
+      <% end %>
+
+  <h3>When would you like to meet with a tutor?</h3>
+      
+      <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
         <div class="checkbox-nice checkbox-inline">
           <%= b.check_box %>
-          <%=  b.label(class: "checkbox-inline") %>
-         </div>
-        <% end %>
+          <%= b.label(class: "checkbox-inline") %>
+        </div>
+        <br>
+      <% end %><br>
 
-    <h3>When would you like to meet with a tutor?</h3>
-        
-        <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
-          <div class="checkbox-nice checkbox-inline">
-            <%= b.check_box %>
-            <%= b.label(class: "checkbox-inline") %>
-          </div>
-          <br>
-        <% end %><br>
-
-      <div><%= submit_tag 'Search for Available Tutors' %></div>
-
-    <% end %>
+    <div><%= submit_tag 'Search for Available Tutors' %></div>
 
   <% end %>
+
+<% end %>
 
 <!-- End Student-Only Portion -->
 
