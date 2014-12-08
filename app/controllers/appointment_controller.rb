@@ -1,18 +1,13 @@
 class AppointmentController < ApplicationController
 
   layout "appointment", only: [:index]
+  before_filter :find_tutor_or_student, only: [:index, :search, :show]
 
   def show
   end
 
   def index
-    if current_tutor
-      @tutor = current_tutor
-      @user = current_tutor
-    else
-      @student = current_student
-      @user = current_student
-    end
+
   end
 
   def search
@@ -28,6 +23,16 @@ class AppointmentController < ApplicationController
     @appointment = Appointment.create(tutor_id: @tutor.id, confirmed: false)
     StudentAppointment.create(student_id: @student.id, appointment_id: @appointment.id)
     redirect_to appointment_index_path
+  end
+
+  def find_tutor_or_student
+    if current_tutor
+      @tutor = current_tutor
+      @user = current_tutor
+    else
+      @student = current_student
+      @user = current_student
+    end
   end
 
 end

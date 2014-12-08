@@ -22,15 +22,15 @@
 <% if current_student %>
   <h2>Search for Appointments</h2>
   <%= form_tag('/appointments/search') do %>
-    <h3>What do you need help with?</h3>  
-    <ul>
+    <h3>What do you need help with?</h3>
     <%= collection_check_boxes(:skills, :skill_ids, Skill.all, :id, :name) do |b| %>
-    <li>
-      <%= b.label { b.check_box + b.text } %>
-     </li>
+    <div class="checkbox-nice checkbox-inline">
+      <%= b.check_box %>
+      <%=  b.label(class: "checkbox-inline") %>
+     </div>
     <% end %>
-    </ul>
-    
+
+
     <h3>When would you like to meet with a tutor?</h3>
     <ul>
     <%= collection_check_boxes(:windows, :window_ids, Window.all, :id, :name) do |b| %>
@@ -39,7 +39,7 @@
      </li>
     <% end %>
     </ul>
-    
+
     <div><%= submit_tag 'Search' %></div>
   <% end %>
 <% end %>
@@ -50,12 +50,12 @@
     Student logged in as: <%= current_student.name %>
     <%= link_to 'Show', current_student %> |
     <%= link_to 'Edit', edit_student_path(current_student) %> |
-    <%= link_to 'Log Out', logout_path %> 
+    <%= link_to 'Log Out', logout_path %>
   <% elsif current_tutor %>
     Tutor logged in as: <%= current_tutor.name %>
     <%= link_to 'Show', current_tutor %> |
     <%= link_to 'Edit', edit_tutor_path(current_tutor) %> |
-    <%= link_to 'Log Out', logout_path %> 
+    <%= link_to 'Log Out', logout_path %>
   <%end%>
 <% else %>
     Not logged in.
