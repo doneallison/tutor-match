@@ -20,6 +20,7 @@ class StudentController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    render layout: "user_show"
   end
 
   def update
