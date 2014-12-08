@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20141208163738) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "confirmed"
-    t.string   "window"
+    t.integer  "window_id"
   end
 
   create_table "skills", force: true do |t|
