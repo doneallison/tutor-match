@@ -13,6 +13,11 @@ class AppointmentController < ApplicationController
     @appointment.save
     #send email
     #render flash notice
+    if current_tutor
+      redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.list_students} on #{@appointment.window.name}."
+    else
+      redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.tutor.name} on #{@appointment.window.name}."
+    end
     redirect_to root_path
   end
 
