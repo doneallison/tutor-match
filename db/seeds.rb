@@ -6,33 +6,26 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Student.create(name: "Don Allison", email: "doneallison@gmail.com", slack: "doneallison", github: "doneallison", uid: "3227364", image: "https://avatars.githubusercontent.com/u/3227364?v=3")
+Tutor.create(name: "David Heinemeier Hansson")
+Tutor.create(name: "Yukihiro Matsumoto")
+Tutor.create(name: "_why the lucky stiff")
+Tutor.create(name: "Grace Hopper")
+Tutor.create(name: "Ada Lovelace")
 
-Tutor.create(name: "Don Allison", uid: "3227364", image: "https://avatars.githubusercontent.com/u/3227364?v=3")
+Tutor.find(1).skills.push(skill.find(1), skill.find(2), skill.find(3), skill.find(4))
+Tutor.find(1).windows.push(window.find(1), window.find(2), window.find(3))
 
-Appointment.create(confirmed: true, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 1, window_id: 1)
+Tutor.find(2).skills.push(skill.find(3), skill.find(4), skill.find(5), skill.find(6))
+Tutor.find(2).windows.push(window.find(3), window.find(7), window.find(11))
 
-Appointment.create(confirmed: false, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 2, window_id: 1)
+Tutor.find(3).skills.push(skill.find(2), skill.find(7), skill.find(12), skill.find(17))
+Tutor.find(3).windows.push(window.find(5), window.find(6), window.find(10))
 
-Appointment.create(confirmed: true, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 1, window_id: 2)
+Tutor.find(4).skills.push(skill.find(8), skill.find(4), skill.find(13), skill.find(16))
+Tutor.find(4).windows.push(window.find(4), window.find(7), window.find(9))
 
-Appointment.create(confirmed: false, end_time: DateTime.now, start_time: DateTime.now, tutor_id: 2, window_id: 3)
-
-TutorSkill.create(tutor_id: 1, skill_id: 1)
-TutorSkill.create(tutor_id: 1, skill_id: 2)
-TutorSkill.create(tutor_id: 1, skill_id: 3)
-
-TutorWindow.create(tutor_id: 1, window_id: 1)
-TutorWindow.create(tutor_id: 1, window_id: 2)
-TutorWindow.create(tutor_id: 1, window_id: 3)
-TutorWindow.create(tutor_id: 1, window_id: 4)
-TutorWindow.create(tutor_id: 1, window_id: 5)
-TutorWindow.create(tutor_id: 1, window_id: 6)
-TutorWindow.create(tutor_id: 1, window_id: 7)
-TutorWindow.create(tutor_id: 1, window_id: 8)
-TutorWindow.create(tutor_id: 1, window_id: 10)
-TutorWindow.create(tutor_id: 1, window_id: 11)
-TutorWindow.create(tutor_id: 1, window_id: 12)
+Tutor.find(5).skills.push(skill.find(1), skill.find(2), skill.find(3), skill.find(7))
+Tutor.find(5).windows.push(window.find(1), window.find(2), window.find(3))
 
 Window.create(name: "Sunday Morning")
 Window.create(name: "Sunday Afternoon")

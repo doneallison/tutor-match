@@ -9,6 +9,7 @@ class StudentController < ApplicationController
   end
 
   def edit
+    #redirect_to root_path unless current_student.id == params[:id]
     @student = current_student
     render layout: 'form'
   end
