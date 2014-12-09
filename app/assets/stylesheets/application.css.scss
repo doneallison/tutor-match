@@ -45,12 +45,13 @@ margin: auto;
 max-width: 50%;
 }
 
+.checkbox-nice.checkbox-inline > label {
+margin-left: 3px !important;
+font-size: 1.2em;
+margin-top: -4px;
+}
 
 .radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
 margin-top: 0;
 margin-left: 0px !important;
-}
-
-.checkbox-nice.checkbox-inline > label {
-margin-left: 3px !important;
 }

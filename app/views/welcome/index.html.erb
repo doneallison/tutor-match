@@ -14,13 +14,106 @@
     <% if Appointment.where("cancelled = ?", false).size == 0 %>
       <p>You do not have any current appointments.</p>
     <% else %>
-    <ul>
+    <div class="table-responsive clearfix">
+    <table class="table table-hover">
+    <thead>
+    <tr>
+    <th><span>Student</span></th>
+    <th><span>Tutor</span></th>
+    <th><span>Date</span></th>
+    <th class="text-center"><span>Status</span></th>
+    <th class="text-center"><span></span></th>
+    </tr>
+    </thead>
+    <tbody>
       <% Appointment.where("cancelled = ? AND confirmed = ?", false, true).each do |appointment| %>
-        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Cancel', "/appointments/#{appointment.id}/cancel" %>
+      <tr>
+      <td>
+      <%= appointment.list_students %>
+      </td>
+      <td>
+      <%= appointment.tutor.name %>
+      </td>
+      <td>
+      <%= appointment.window.name %>
+      </td>
+      <td class="text-center">
+
+        <% if appointment.confirmed %>
+        <span class="label label-success">
+          Confirmed
+        </span>
+        <% else %>
+        <span class="label label-warning">
+          Pending
+        </span>
+        <% end %>
+      </td>
+      <td class="text-center" style="width: 15%;">
+        <% if appointment.confirmed %>
+          <%= link_to "/appointments/#{appointment.id}/cancel", class: 'table-link' do %>
+            <span class="fa-stack">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+        <% else %>
+          <%= link_to "/appointments/#{appointment.id}/confirm", class: 'table-link' do %>
+            <span class="fa-stack">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+        <% end %>
+      </td>
+      </tr>
       <% end %>
+
       <% Appointment.where("cancelled = ? AND confirmed = ?", false, false).each do |appointment| %>
-        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= link_to 'Confirm', "/appointments/#{appointment.id}/confirm" %>
+      <tr>
+      <td>
+      <%= appointment.list_students %>
+      </td>
+      <td>
+      <%= appointment.tutor.name %>
+      </td>
+      <td>
+      <%= appointment.window.name %>
+      </td>
+      <td class="text-center">
+
+        <% if appointment.confirmed %>
+        <span class="label label-success">
+          Confirmed
+        </span>
+        <% else %>
+        <span class="label label-warning">
+          Pending
+        </span>
+        <% end %>
+      </td>
+      <td class="text-center" style="width: 15%;">
+        <% if appointment.confirmed %>
+          <%= link_to "/appointments/#{appointment.id}/cancel", class: 'table-link' do %>
+            <span class="fa-stack">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+        <% else %>
+          <%= link_to "/appointments/#{appointment.id}/confirm", class: 'table-link' do %>
+            <span class="fa-stack">
+            <i class="fa fa-square fa-stack-2x"></i>
+            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+            </span>
+          <% end %>
+        <% end %>
+      </td>
+      </tr>
       <% end %>
+        </tbody>
+        </table>
+        </div>
     </ul>
     <% end %>
 <!-- End Tutor-Only Portion -->
@@ -29,17 +122,55 @@
     <% if Appointment.where("cancelled = ?", false).size == 0 %>
       <p>You do not have any current appointments.</p>
     <% else %>
-    <ul>
-      <% Appointment.where("cancelled = ? AND confirmed = ?", false, true).each do |appointment| %>
-        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= appointment.confirmed ? "Confirmed" : "Unconfirmed" %> | <%= link_to 'Cancel', "/appointments/#{appointment.id}/cancel" %>
+      <div class="table-responsive clearfix">
+      <table class="table table-hover">
+      <thead>
+      <tr>
+      <th><span>Student</span></th>
+      <th><span>Tutor</span></th>
+      <th><span>Date</span></th>
+      <th class="text-center"><span>Status</span></th>
+      <th class="text-center"><span></span></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Appointment.where("cancelled = ?", false).each do |appointment| %>
+        <tr>
+        <td>
+        <%= appointment.list_students %>
+        </td>
+        <td>
+        <%= appointment.tutor.name %>
+        </td>
+        <td>
+        <%= appointment.window.name %>
+        </td>
+        <td class="text-center">
+          <% if appointment.confirmed %>
+          <span class="label label-success">
+            Confirmed
+          </span>
+          <% else %>
+          <span class="label label-warning">
+            Pending
+          </span>
+          <% end %>
+        </td>
+        <td class="text-center" style="width: 15%;">
+          <%= link_to "/appointments/#{appointment.id}/cancel", class: 'table-link' do %>
+          <span class="fa-stack">
+          <i class="fa fa-square fa-stack-2x"></i>
+          <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+          </span>
+          <% end %>
+        </td>
+        </tr>
       <% end %>
-      <% Appointment.where("cancelled = ? AND confirmed = ?", false, false).each do |appointment| %>
-        <li><%= "#{appointment.window.name}, Tutor: #{appointment.tutor.name}, Student(s): #{appointment.list_students}" %> <%= link_to 'View', "/appointments/#{appointment.id}" %> | <%= link_to 'Edit', "/appointments/#{appointment.id}/edit" %> | <%= appointment.confirmed ? "Confirmed" : "Unconfirmed" %> | <%= link_to 'Cancel', "/appointments/#{appointment.id}/cancel" %>
-      <% end %>
+      </tbody>
+      </table>
+      </div>
     </ul>
     <% end %>
-  </div>
-
 
   <div class="row space-bottom">
   <h1>Make a New Appointment</h1>
