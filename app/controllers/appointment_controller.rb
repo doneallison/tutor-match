@@ -40,15 +40,32 @@ class AppointmentController < ApplicationController
   end
 
   def search
-    if params[:skills][:skill_ids][0] == "" || params[:windows][:window_ids][0] == ""
+
+    @skills_needed = params[:skills][:skill_ids].map { |x| x.to_i }[0..-2]
+    @windows_needed = params[:windows][:window_ids].map { |x| x.to_i }[0..-2]
+    @tutor_matches = Appointment.find_matches(@skills_needed, @windows_needed)
+    @deconflicted_windows_needed = []
+
+    @windows_needed.each do |window_needed|
+      window = Window.find(window_needed)
+      @tutor_matches.each do |tutor_match|
+        match = Tutor.find(tutor_match)
+        if match.windows.include?(window) && !match.conflict?(window)
+          @deconflicted_windows_needed << window
+        end
+      end
+    end
+
+    if @skills_needed.empty? || @windows_needed.empty?
       flash[:notice] = "Please select at least one topic you need help with and at least one time you would like to meet with a tutor."
       redirect_to root_path
-    else
-    	@skills_needed = params[:skills][:skill_ids].map { |x| x.to_i }[0..-2]
-    	@windows_needed = params[:windows][:window_ids].map { |x| x.to_i }[0..-2]
-    	@tutor_matches = Appointment.find_matches(@skills_needed, @windows_needed)
+    elsif @deconflicted_windows_needed.empty?
+      flash[:notice] = "No tutors match the criteria you selected. Please try again."
+      redirect_to root_path
+    else  
       render 'appointment/results'
     end
+
   end
 
   def book
