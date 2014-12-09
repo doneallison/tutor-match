@@ -8,6 +8,7 @@
 			<tr>
 			<th><span>Date</span></th>
 			<th><span>Tutor</span></th>
+			<th><span>Strengths</span></th>
 			<th class="text-center"><span>Book</span></th>
 			</tr>
 			</thead>
@@ -20,7 +21,7 @@
 						<% match = Tutor.find(tutor_match) %>
 						<% if match.windows.include?(window) %>
 							<td>
-							date
+								<%= window.name %>
 							</td>
 							<td>
 							<%= match.name %>
@@ -28,7 +29,10 @@
 							<%= hidden_field_tag :window, window.id %>
 							</td>
 							<td>
-							<%= submit_tag 'Book' %>
+								<%= match.list_skills %>
+							</td>
+							<td>
+								<button type="submit" class="btn-set btn-primary">Book</button>
 							</td>
 						</tr>
 					<% end %>
