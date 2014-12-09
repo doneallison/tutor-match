@@ -18,11 +18,11 @@ class Appointment < ActiveRecord::Base
 			if (skills.length == 1) || ((skills.length == 2) && (index == 1))
 				str << "#{Skill.find(skill).name}"
 			elsif (skills.length == 2 && index == 0)
-				str << "#{Skill.find(skill).name} and "
+				str << "#{Skill.find(skill).name} or "
 			elsif (index < skills.length - 1)
 				str << "#{Skill.find(skill).name}, "
 			else (index == skills.length - 1)
-				str << "and #{Skill.find(skill).name}"
+				str << "or #{Skill.find(skill).name}"
 			end
 		end
 		str
@@ -34,11 +34,11 @@ class Appointment < ActiveRecord::Base
 			if (windows.length == 1) || ((windows.length == 2) && (index == 1))
 				str << "#{Window.find(window).name}"
 			elsif (windows.length == 2 && index == 0)
-				str << "#{Window.find(window).name} and "
+				str << "#{Window.find(window).name} or "
 			elsif (index < windows.length - 1)
 				str << "#{Window.find(window).name}, "
 			else (index == windows.length - 1)
-				str << "and #{Window.find(window).name}"
+				str << "or #{Window.find(window).name}"
 			end
 		end
 		str

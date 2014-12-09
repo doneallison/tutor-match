@@ -40,7 +40,7 @@ class AppointmentController < ApplicationController
   end
 
   def search
-    if params[:skills][0] = "" || params[:windows][0] = ""
+    if params[:skills][:skill_ids][0] == "" || params[:windows][:window_ids][0] == ""
       flash[:notice] = "Please select at least one topic you need help with and at least one time you would like to meet with a tutor."
       redirect_to root_path
     else
@@ -52,6 +52,7 @@ class AppointmentController < ApplicationController
   end
 
   def book
+    binding.pry
     @student = current_student
     @tutor = Tutor.find(params[:tutor])
     @window = Window.find(params[:window])
