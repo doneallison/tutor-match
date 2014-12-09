@@ -1,25 +1,41 @@
-<p>The following tutors have experience in <%= Appointment.list_skills_in_sentence(@skills_needed) %> and are usually free on <%= Appointment.list_windows_in_sentence(@windows_needed) %>.</p>
 
-<%= form_tag('/appointments/book') do %>
-	<ul>
-		<% @windows_needed.each do |window_needed| %>
-			<li>
+		<p>The following tutors have experience in <strong><%= Appointment.list_skills_in_sentence(@skills_needed) %></strong> and are usually free on <strong><%= Appointment.list_windows_in_sentence(@windows_needed) %></strong>.</p>
+
+		<%= form_tag('/appointments/book') do %>
+			<div class="table-responsive clearfix">
+			<table class="table table-hover">
+			<thead>
+			<tr>
+			<th><span>Date</span></th>
+			<th><span>Tutor</span></th>
+			<th class="text-center"><span>Book</span></th>
+			</tr>
+			</thead>
+			<tbody>
+
+				<% @windows_needed.each do |window_needed| %>
+				<tr>
 				<% window = Window.find(window_needed) %>
-				<%= window.name %>
-				<ul>
-					<li>
-						<% @tutor_matches.each do |tutor_match| %>
-							<% match = Tutor.find(tutor_match) %>
-							<% if match.windows.include?(window) %>
-								<%= match.name %>
-								<%= hidden_field_tag :tutor, match.id %>
-								<%= hidden_field_tag :window, window.id %>
-								<%= submit_tag 'Book' %>
-							<% end %>
-						<% end %>
-					</li>
-				</ul>
-			</li>		
+					<% @tutor_matches.each do |tutor_match| %>
+						<% match = Tutor.find(tutor_match) %>
+						<% if match.windows.include?(window) %>
+							<td>
+							date
+							</td>
+							<td>
+							<%= match.name %>
+							<%= hidden_field_tag :tutor, match.id %>
+							<%= hidden_field_tag :window, window.id %>
+							</td>
+							<td>
+							<%= submit_tag 'Book' %>
+							</td>
+						</tr>
+					<% end %>
+				<% end %>
+			<% end %>
+
+			</tbody>
+			</table>
+			</div>
 		<% end %>
-	</ul>
-<% end %>
