@@ -1,10 +1,8 @@
-
-
 <%= form_for @student, url: {action: "update"}, html: {class: "user_form"} do |f| %>
   <%= f.label :name, "Name"%>
   <%= f.text_field :name, value: @student.name, placeholder: "Name", class: 'form-control' %><br>
-  <%= f.label :email, "Email" %>
-  <%= f.text_field :email,  value: @student.email, placeholder: "Email", class: 'form-control' %><br>
+  <%= f.label :email, "Email", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}'  %>
+  <%= f.text_field :email,  value: @student.email, placeholder: "Email", class: 'form-control' , :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %><br>
   <%= f.label :slack, "Slack Username" %>
   <%= f.text_field :slack, value: @student.slack, placeholder: "Slack Username", class: 'form-control' %><br>
   <%= f.label :github, "GitHub Username" %>

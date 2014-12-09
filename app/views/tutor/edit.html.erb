@@ -3,8 +3,8 @@
   <%= f.label :name, "Name" %>
   <%= f.text_field :name, class: 'form-control', value: @tutor.name %><br>
 
-  <%= f.label :email, "Email" %>
-  <%= f.text_field :email, class: 'form-control',  value: @tutor.email %><br>
+  <%= f.label :email, "Email", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
+  <%= f.text_field :email, class: 'form-control',  value: @tutor.email, :required => true , :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}'%><br>
 
   <%= f.label :slack, "Slack Username" %>
   <%= f.text_field :slack, class: 'form-control', value: @tutor.slack, placeholder: "Slack Username" %><br>
