@@ -44,6 +44,23 @@ class Appointment < ActiveRecord::Base
 		str
 	end
 
+	def self.user_appointments(user)
+		Appointment.all.select do |appointment|
+			appointment.students.include?(user.name) && !appointment.cancelled && !appointment.declined
+		end
+
+	def self.confirmed_user_appointments(user)
+		Appointment.all.select do |appointment|
+			appointment.students.include?(user.name) && !appointment.cancelled && !appointment.declined && appointment.confirmed
+		end
+	end
+
+	def self.unconfirmed_user_appointments(user)
+		Appointment.all.select do |appointment|
+			appointment.students.include?(user.name) && !appointment.cancelled && !appointment.declined && !appointment.confirmed
+		end
+	end
+
 	def list_students
 		str = ""
 		self.students.each_with_index do |student, index|

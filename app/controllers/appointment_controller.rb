@@ -52,7 +52,6 @@ class AppointmentController < ApplicationController
   end
 
   def book
-    binding.pry
     @student = current_student
     @tutor = Tutor.find(params[:tutor])
     @window = Window.find(params[:window])
