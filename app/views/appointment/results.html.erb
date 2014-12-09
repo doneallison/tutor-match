@@ -19,7 +19,7 @@
 				<% window = Window.find(window_needed) %>
 					<% @tutor_matches.each do |tutor_match| %>
 						<% match = Tutor.find(tutor_match) %>
-						<% if match.windows.include?(window) %>
+						<% if match.windows.include?(window) && !match.conflict?(window) %>
 							<td>
 								<%= window.name %>
 							</td>

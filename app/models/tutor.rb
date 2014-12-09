@@ -17,6 +17,12 @@ class Tutor < ActiveRecord::Base
     str
   end
 
+  def conflict?(window)
+    self.appointments.each do |appointment|
+      return true if appointment.window == window
+    end
+  end
+
   def self.create_from_omniauth(auth_hash)
     self.create(
       provider: auth_hash[:provider],
