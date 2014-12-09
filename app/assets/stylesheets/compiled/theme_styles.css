@@ -1401,6 +1401,20 @@ h3 .small {
   /* stops bg color from leaking outside the border: */
 }
 
+.btn-set {
+border: none;
+padding: 6px 12px;
+border-bottom: 4px solid;
+-webkit-transition: border-color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
+transition: border-color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;
+outline: none;
+border-radius: 3px;
+background-clip: padding-box;
+/* font-size: 1.2em; */
+font-weight: 600;
+font-size: 0.8em;
+}
+
 .btn-default,
 .wizard-cancel,
 .wizard-back {

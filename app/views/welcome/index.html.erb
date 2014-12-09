@@ -52,17 +52,16 @@
       <td class="text-center" style="width: 15%;">
         <% if appointment.confirmed %>
           <%= link_to "/appointments/#{appointment.id}/cancel", class: 'table-link' do %>
-            <span class="fa-stack">
-            <i class="fa fa-square fa-stack-2x"></i>
-            <i class="fa fa-close fa-stack-1x fa-inverse"></i>
-            </span>
+          <button type="submit" class="btn-set btn-danger">Cancel</button>
+
           <% end %>
         <% else %>
           <%= link_to "/appointments/#{appointment.id}/confirm", class: 'table-link' do %>
-            <span class="fa-stack">
-            <i class="fa fa-square fa-stack-2x"></i>
-            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-            </span>
+          <span class="label label-primary">
+            Confirm
+          </span>
+
+          <button type="submit" class="btn-set btn-success">Confirm</button>
           <% end %>
         <% end %>
       </td>
@@ -102,10 +101,7 @@
           <% end %>
         <% else %>
           <%= link_to "/appointments/#{appointment.id}/confirm", class: 'table-link' do %>
-            <span class="fa-stack">
-            <i class="fa fa-square fa-stack-2x"></i>
-            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-            </span>
+          <button type="submit" class="btn-set btn-primary">Confirm</button>
           <% end %>
         <% end %>
       </td>
@@ -195,7 +191,7 @@
         <br>
       <% end %><br>
 
-      <div><%= submit_tag 'Search for Available Tutors', class: 'btn btn-default' %></div>
+      <div><%= submit_tag 'Search for Available Tutors', class: 'btn-set btn-default' %></div>
 
   <% end %>
 
@@ -208,12 +204,12 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-6">
-    <button type="submit" class="btn btn-primary col-xs-12 btn-github">
+    <button type="submit" class="btn-set btn-primary col-xs-12 btn-github">
       <i class="fa fa-github"></i><a href="/student/new"> Student Login</a>
     </button>
   </div>
   <div class="col-xs-12 col-sm-6">
-    <button type="submit" class="btn btn-primary col-xs-12 btn-github">
+    <button type="submit" class="btn-set btn-primary col-xs-12 btn-github">
       <i class="fa fa-github"></i><a href="/tutor/new"> Tutor Login</a>
     </button>
   </div>
