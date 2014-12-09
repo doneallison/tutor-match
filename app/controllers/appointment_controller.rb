@@ -11,7 +11,7 @@ class AppointmentController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.cancelled = true
     @appointment.save
-    UserMailer.cancellation_email(@appointment.tutor, @appointment.students, @user).deliver
+    UserMailer.cancellation_email(@appointment.tutor, @appointment.students, @user, @appointment).deliver
     if current_tutor
       redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.list_students} on #{@appointment.window.name}. #{@appointment.list_students} #{@appointment.students.size == 1 ? "has" : "have"} been notified."
     else
@@ -25,7 +25,7 @@ class AppointmentController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.confirmed = true
     @appointment.save
-    UserMailer.confirmation_email(@appointment.tutor, @appointment.students).deliver
+    UserMailer.confirmation_email(@appointment.tutor, @appointment.students, @appointment).deliver
     flash[:notice] = "You have successfully confirmed your appointment with #{@appointment.students.last.name}. #{@appointment.students.last.name} has been notified."
     redirect_to root_path
   end
@@ -34,7 +34,7 @@ class AppointmentController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.declined = true
     @appointment.save
-    UserMailer.appointment_decline_email(@appointment.tutor, @appointment.students.last).deliver
+    UserMailer.appointment_decline_email(@appointment.tutor, @appointment.students.last, @appointment).deliver
     flash[:notice] = "You have successfully declined an appointment with #{@appointment.students.last.name}. #{@appointment.students.last.name} has been notified."
     redirect_to root_path
   end
