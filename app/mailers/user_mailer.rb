@@ -33,11 +33,14 @@ class UserMailer < ActionMailer::Base
   end
 
   def appointment_request_email(student, tutor)
-    recipients = []
     @student = student
     @tutor = tutor
-    recipients.push(student.email, tutor.email)
-    mail(to: recipients, subject: 'Appointment Request Notification')
+    mail(to: @tutor.email, subject: 'Appointment Request Notification')
   end
 
+  def appointment_decline_email(tutor, student)
+    @student = student
+    @tutor = tutor
+    mail(to: @student.email, subject: 'Appointment Decline Notification')
+  end
 end

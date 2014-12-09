@@ -30,6 +30,15 @@ class AppointmentController < ApplicationController
     redirect_to root_path
   end
 
+  def appointment_decline_email
+    @appointment = Appointment.find(params[:id])
+    @appointment.declined = true
+    @appointment.save
+    UserMailer.decline_email(@appointment.tutor, @appointment.students.last).deliver
+    flash[:notice] = "You have successfully declined an appointment with #{@appointment.students.last.name}. #{@appointment.students.last.name} has been notified."
+    redirect_to root_path
+  end
+
   def search
   	@skills_needed = params[:skills][:skill_ids].map { |x| x.to_i }[0..-2]
   	@windows_needed = params[:windows][:window_ids].map { |x| x.to_i }[0..-2]
