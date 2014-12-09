@@ -25,12 +25,24 @@
           </li>
           <li>
             <a href="<%= @user.github %>" class="clearfix">
-              <i class="fa fa-link fa-lg"></i> <strong>Github</strong>
+              <i class="fa fa-link fa-lg"></i> <strong>GitHub</strong>
               <span class="pull-right">
                <%= @user.github.split('/').pop %>
               </span>
             </a>
           </li>
+<!--           Start Slack -->
+          <% if @user.slack != "" %>
+            <li>
+              <a href="<%= @user.slack %>" class="clearfix">
+                <i class="fa fa-link fa-lg"></i> <strong>Slack</strong>
+                <span class="pull-right">
+                 <%= @user.slack %>
+                </span>
+              </a>
+            </li>
+          <% end %>
+<!--           End Slack -->
         </ul>
       </div>
     </div>
