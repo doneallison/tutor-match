@@ -30,11 +30,11 @@ class AppointmentController < ApplicationController
     redirect_to root_path
   end
 
-  def appointment_decline_email
+  def decline
     @appointment = Appointment.find(params[:id])
     @appointment.declined = true
     @appointment.save
-    UserMailer.decline_email(@appointment.tutor, @appointment.students.last).deliver
+    UserMailer.appointment_decline_email(@appointment.tutor, @appointment.students.last).deliver
     flash[:notice] = "You have successfully declined an appointment with #{@appointment.students.last.name}. #{@appointment.students.last.name} has been notified."
     redirect_to root_path
   end
@@ -50,7 +50,7 @@ class AppointmentController < ApplicationController
     @student = current_student
     @tutor = Tutor.find(params[:tutor])
     @window = Window.find(params[:window])
-    @appointment = Appointment.create(tutor_id: @tutor.id, window_id: @window.id, confirmed: false, cancelled: false)
+    @appointment = Appointment.create(tutor_id: @tutor.id, window_id: @window.id, confirmed: false, cancelled: false, declined: false)
     @student.appointments << @appointment
     UserMailer.appointment_request_email(@tutor, @student).deliver
     flash[:notice] = "You have successfully requested an appointment with #{@tutor.name} for #{@window.name}. #{@tutor.name.split(" ")[0]} has been notified. Once #{@tutor.name.split(" ")[0]} confirms your appointment, you will receive a notification via email."
