@@ -52,7 +52,7 @@ class AppointmentController < ApplicationController
     @window = Window.find(params[:window])
     @appointment = Appointment.create(tutor_id: @tutor.id, window_id: @window.id, confirmed: false, cancelled: false, declined: false)
     @student.appointments << @appointment
-    UserMailer.appointment_request_email(@tutor, @student).deliver
+    UserMailer.appointment_request_email(@tutor, @student, @appointment).deliver
     flash[:notice] = "You have successfully requested an appointment with #{@tutor.name} for #{@window.name}. #{@tutor.name.split(" ")[0]} has been notified. Once #{@tutor.name.split(" ")[0]} confirms your appointment, you will receive a notification via email."
     redirect_to root_path
   end

@@ -1,7 +1,7 @@
-<%= @tutor.name.split(" ")[0]%>,
+<%= @tutor.name.split(" ")[0]%>,<br><br>
 
-<%= @student.name %> has requested a tutoring session with you for <%= @appointment.window %> at The Flatiron School (11 Broadway #260, New York, NY 10004). If you can work with <%= @student.name.split(" ")[0] %> then, please click <a href="http://tutormatch.herokuapp.com/appointments/<%= @appointment.id %>/confirm">here</a> to confirm. Otherwise, please please click <a href="http://tutormatch.herokuapp.com/appointments/<%= $APPOINTMENT_ID %>/decline">here</a> to decline.
+<%= @student.name %> has requested a tutoring session with you for <%= @appointment.window.name %> at The Flatiron School (11 Broadway #260, New York, NY 10004). If you can work with <%= @student.name.split(" ")[0] %> then, please click <a href="http://tutormatch.herokuapp.com/appointments/<%= @appointment.id %>/confirm">here</a> to confirm. Otherwise, please please click <a href="http://tutormatch.herokuapp.com/appointments/<%= $APPOINTMENT_ID %>/decline">here</a> to decline.<br><br>
 
-Thanks,
+Thanks,<br><br>
 
 The Flatiron School via <a href="http://tutormatch.herokuapp.com">TutorMatch</a>

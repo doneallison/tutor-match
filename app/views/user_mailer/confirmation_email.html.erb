@@ -1,7 +1,7 @@
-<%= @student.name.split(" ")[0]%>,
+<%= @appointment.list_students %>,<br><br>
 
-Congratulations! <%= @tutor.name %> has declined your request for a tutoring session on <%= @appointment.window %>. If you can no longer attend that tutoring session, please cancel as soon as possible by clicking <a href="http://tutormatch.herokuapp.com/appointments/<%= $APPOINTMENT_ID %>/cancel">here</a>.
+Congratulations! <%= @tutor.name %> has accepted your request for a tutoring session on <%= @appointment.window.name %>. If you can no longer attend that tutoring session, please cancel as soon as possible by clicking <a href="http://tutormatch.herokuapp.com/appointments/<%= @appointment.id %>/cancel">here</a>.<br><br>
 
-Thanks,
+Thanks,<br><br>
 
 The Flatiron School via <a href="http://tutormatch.herokuapp.com">TutorMatch</a>
