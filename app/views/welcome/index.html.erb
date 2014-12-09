@@ -11,7 +11,7 @@
 
 <% if current_tutor %>
 <!-- Begin Tutor-Only Portion -->
-    <% if Appointment.where("cancelled = ? AND declined = ?", false, false).size == 0 %>
+    <% if Appointment.user_appointments(@user).size == 0 %>
       <p>You do not have any current appointments.</p>
     <% else %>
     <div class="table-responsive clearfix">
@@ -26,7 +26,7 @@
     </tr>
     </thead>
     <tbody>
-      <% Appointment.where("cancelled = ? AND confirmed = ? AND declined = ?", false, true, false).each do |appointment| %>
+      <% Appointment.confirmed_user_appointments(@user).each do |appointment| %>
       <tr>
       <td>
       <%= appointment.list_students %>
@@ -68,7 +68,7 @@
       </tr>
       <% end %>
 
-      <% Appointment.where("cancelled = ? AND confirmed = ? AND declined = ?", false, false, false).each do |appointment| %>
+      <% Appointment.unconfirmed_user_appointments(@user).each do |appointment| %>
       <tr>
       <td>
       <%= appointment.list_students %>
@@ -115,7 +115,7 @@
 <!-- End Tutor-Only Portion -->
 <% elsif current_student %>
 <!-- Begin Student-Only Portion -->
-    <% if Appointment.where("cancelled = ? AND declined = ?", false, false).size == 0 %>
+    <% if Appointment.user_appointments(@user).size == 0 %>
       <p>You do not have any current appointments.</p>
     <% else %>
       <div class="table-responsive clearfix">
@@ -130,7 +130,7 @@
       </tr>
       </thead>
       <tbody>
-      <% Appointment.where("cancelled = ? AND declined = ?", false, false).each do |appointment| %>
+      <% Appointment.user_appointments(@user).each do |appointment| %>
         <tr>
         <td>
         <%= appointment.list_students %>

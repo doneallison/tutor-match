@@ -45,19 +45,32 @@ class Appointment < ActiveRecord::Base
 	end
 
 	def self.user_appointments(user)
-		Appointment.all.select do |appointment|
-			appointment.students.include?(user.name) && !appointment.cancelled && !appointment.declined
-		end
+			Appointment.all.select do |appointment|
+				if Student.all.include?(user)
+					appointment.students.include?(user) && !appointment.cancelled && !appointment.declined
+				else
+					appointment.tutor_id == user.id && !appointment.cancelled && !appointment.declined
+				end
+			end
+	end
 
 	def self.confirmed_user_appointments(user)
 		Appointment.all.select do |appointment|
-			appointment.students.include?(user.name) && !appointment.cancelled && !appointment.declined && appointment.confirmed
+			if Student.all.include?(user)
+				appointment.students.include?(user) && !appointment.cancelled && !appointment.declined && appointment.confirmed
+			else
+				appointment.tutor_id == user.id && !appointment.cancelled && !appointment.declined && appointment.confirmed
+			end
 		end
 	end
 
 	def self.unconfirmed_user_appointments(user)
 		Appointment.all.select do |appointment|
-			appointment.students.include?(user.name) && !appointment.cancelled && !appointment.declined && !appointment.confirmed
+			if Student.all.include?(user)
+				appointment.students.include?(user) && !appointment.cancelled && !appointment.declined && !appointment.confirmed
+			else
+				appointment.tutor_id == user.id && !appointment.cancelled && !appointment.declined && !appointment.confirmed
+			end
 		end
 	end
 
