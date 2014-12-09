@@ -11,7 +11,7 @@ class AppointmentController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.cancelled = true
     @appointment.save
-    #send email
+    UserMailer.cancellation_email(@appointment.tutor, @appointment.students, @user).deliver
     if current_tutor
       redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.list_students} on #{@appointment.window.name}. #{@appointment.list_students} #{@appointment.students.size == 1 ? "has" : "have"} been notified."
     else
@@ -25,10 +25,8 @@ class AppointmentController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.confirmed = true
     @appointment.save
-    #send email
-    if current_tutor
-      flash[:notice] = "You have successfully confirmed your appointment with #{@appointment.students.last.name}. #{@appointment.students.last.name} has been notified."
-    end
+    UserMailer.confirmation_email(@appointment.tutor, @appointment.students).deliver
+    flash[:notice] = "You have successfully confirmed your appointment with #{@appointment.students.last.name}. #{@appointment.students.last.name} has been notified."
     redirect_to root_path
   end
 
@@ -45,6 +43,8 @@ class AppointmentController < ApplicationController
     @window = Window.find(params[:window])
     @appointment = Appointment.create(tutor_id: @tutor.id, window_id: @window.id, confirmed: false, cancelled: false)
     @student.appointments << @appointment
+    UserMailer.appointment_request_email(@tutor, @student).deliver
+    flash[:notice] = "You have successfully requested an appointment with #{@tutor.name} for #{@window.name}. #{@tutor.name.split(" ")[0]} has been notified. Once #{@tutor.name.split(" ")[0]} confirms your appointment, you will receive a notification via email."
     redirect_to root_path
   end
 
