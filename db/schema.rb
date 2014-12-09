@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208220103) do
+ActiveRecord::Schema.define(version: 20141209014123) do
 
   create_table "appointments", force: true do |t|
     t.datetime "start_time"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20141208220103) do
     t.boolean  "confirmed"
     t.integer  "window_id"
     t.boolean  "cancelled"
+    t.boolean  "declined"
   end
 
   create_table "skills", force: true do |t|
