@@ -40,10 +40,15 @@ class AppointmentController < ApplicationController
   end
 
   def search
-  	@skills_needed = params[:skills][:skill_ids].map { |x| x.to_i }[0..-2]
-  	@windows_needed = params[:windows][:window_ids].map { |x| x.to_i }[0..-2]
-  	@tutor_matches = Appointment.find_matches(@skills_needed, @windows_needed)
-    render 'appointment/results'
+    if params[:skills][0] = "" || params[:windows][0] = ""
+      flash[:notice] = "Please select at least one topic you need help with and at least one time you would like to meet with a tutor."
+      redirect_to root_path
+    else
+    	@skills_needed = params[:skills][:skill_ids].map { |x| x.to_i }[0..-2]
+    	@windows_needed = params[:windows][:window_ids].map { |x| x.to_i }[0..-2]
+    	@tutor_matches = Appointment.find_matches(@skills_needed, @windows_needed)
+      render 'appointment/results'
+    end
   end
 
   def book
