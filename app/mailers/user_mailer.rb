@@ -34,7 +34,7 @@ class UserMailer < ActionMailer::Base
     mail(to: recipients, subject: 'Appointment Confirmation Notification')
   end
 
-  def appointment_request_email(student, tutor, appointment)
+  def appointment_request_email(tutor, student, appointment)
     @appointment = appointment
     @student = student
     @tutor = tutor
