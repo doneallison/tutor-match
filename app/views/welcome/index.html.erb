@@ -22,7 +22,7 @@
     <th><span>Tutor</span></th>
     <th><span>Date</span></th>
     <th class="text-center"><span>Status</span></th>
-    <th class="text-center"><span>Confirm/Cancel</span></th>
+    <th class="text-center"><span>Actions</span></th>
     </tr>
     </thead>
     <tbody>
@@ -91,7 +91,7 @@
         </span>
         <% end %>
       </td>
-      <td class="text-center" style="width: 15%;">
+      <td class="text-center" style="width: 25%;">
         <% if appointment.confirmed %>
           <%= link_to("/appointments/#{appointment.id}/cancel", class: 'table-link',  data: { confirm: "Are you sure you want to cancel this appointment?" } ) do %>
             <span class="fa-stack">
@@ -101,8 +101,13 @@
           <% end %>
         <% else %>
           <%= link_to "/appointments/#{appointment.id}/confirm", class: 'table-link' do %>
-          <button type="submit" class="btn-set btn-primary">Confirm</button>
+          <button type="submit" class="btn-set btn-success">Confirm</button>
           <% end %>
+
+          <%= link_to "/appointments/#{appointment.id}/decline", class: 'table-link' do %>
+          <button type="submit" class="btn-set btn-danger">Decline</button>
+          <% end %>  
+
         <% end %>
       </td>
       </tr>
