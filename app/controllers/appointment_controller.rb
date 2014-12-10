@@ -13,7 +13,6 @@ class AppointmentController < ApplicationController
     @appointment.save
     if @appointment.tutor.email && @appointment.students.each { |student| student.email }
       UserMailer.cancellation_email(@appointment.tutor, @appointment.students, @user, @appointment).deliver
-    }
     end
     if current_tutor
       redirect_message = "You have successfully cancelled the appointment you had with #{@appointment.list_students} on #{@appointment.window.name}. #{@appointment.list_students} #{@appointment.students.size == 1 ? "has" : "have"} been notified."
