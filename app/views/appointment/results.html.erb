@@ -1,45 +1,43 @@
+<p>The following tutors have experience in <strong><%= Appointment.list_skills_in_sentence(@skills_needed) %></strong> and are usually free on <strong><%= Appointment.list_windows_in_sentence(@windows_needed) %></strong>.</p>
 
-		<p>The following tutors have experience in <strong><%= Appointment.list_skills_in_sentence(@skills_needed) %></strong> and are usually free on <strong><%= Appointment.list_windows_in_sentence(@windows_needed) %></strong>.</p>
+<div class="table-responsive clearfix">
+<table class="table table-hover">
+<thead>
+<tr>
+<th><span>Date</span></th>
+<th><span>Tutor</span></th>
+<th><span>Strengths</span></th>
+<th class="text-center"><span>Book</span></th>
 
-			<div class="table-responsive clearfix">
-			<table class="table table-hover">
-			<thead>
-			<tr>
-			<th><span>Date</span></th>
-			<th><span>Tutor</span></th>
-			<th><span>Strengths</span></th>
-			<th class="text-center"><span>Book</span></th>
-
-			</tr>
-			</thead>
-			<tbody>
+</tr>
+</thead>
+<tbody>
+	<% @windows_needed.each do |window_needed| %>
+	<% window = Window.find(window_needed) %>
+		<% @tutor_matches.each do |tutor_match| %>
+			<% match = Tutor.find(tutor_match) %>
+			<% if match.windows.include?(window) %>
+				<%= form_tag('/appointments/book') do %>
 				<tr>
-				<% @windows_needed.each do |window_needed| %>
-				<% window = Window.find(window_needed) %>
-					<% @tutor_matches.each do |tutor_match| %>
-						<% match = Tutor.find(tutor_match) %>
-						<% if match.windows.include?(window) %>
-						<%= form_tag('/appointments/book') do %>
-							<td>
-								<%= window.name %>
-							</td>
-							<td>
-								<%= match.name %>
-								<%= hidden_field_tag :tutor, match.id %>
-								<%= hidden_field_tag :window, window.id %>
-							</td>
-							<td>
-								<%= match.list_skills %>
-							</td>
-							<td class="text-center">
-								<button type="submit" class="btn-set btn-primary">Book</button>
-							</td>
-						<% end %>
-						</tr>
-					<% end %>
+				<td>
+					<%= window.name %>
+				</td>
+				<td>
+					<%= match.name %>
+					<%= hidden_field_tag :tutor, match.id %>
+					<%= hidden_field_tag :window, window.id %>
+				</td>
+				<td>
+					<%= match.list_skills %>
+				</td>
+				<td class="text-center">
+					<button type="submit" class="btn-set btn-primary">Book</button>
+				</td>
+				</tr>
 				<% end %>
-
-			</tbody>
-			</table>
-			</div>
+			<% end %>
 		<% end %>
+	<% end %>
+</tbody>
+</table>
+</div>
