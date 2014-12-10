@@ -1,9 +1,11 @@
 <% if logged_in? %>
 
-<% if notice %>
-  <p id="notice"><%= notice %></p>
+  <% if notice %>
+  <div class="alert alert-success">
+    <i class="fa fa-check-circle fa-fw fa-lg"></i><%= notice %>
+  </div>
   <br>
-<% end %>
+  <% end %>
 
 <div class="row space-bottom">
 
