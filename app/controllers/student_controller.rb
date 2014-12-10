@@ -26,7 +26,6 @@ class StudentController < ApplicationController
 
   def update
     current_student.update(student_params)
-    # UserMailer.welcome_email(current_student).deliver
     redirect_to root_path
   end
 
